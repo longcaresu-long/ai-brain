@@ -3,581 +3,570 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>数字化决策大脑 · 拟合超级个体系统</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>数字化决策大脑 · 立项方案</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0e1a;
-    --bg2: #111827;
-    --bg3: #1a2235;
-    --surface: #1e2d45;
-    --surface2: #243352;
-    --border: rgba(99,179,237,0.12);
-    --border2: rgba(99,179,237,0.22);
-    --text: #e8f0fe;
-    --text2: #94a3c0;
-    --text3: #5a6a8a;
-    --accent: #63b3ed;
-    --accent2: #4fd1c5;
-    --gold: #f6c90e;
-    --coral: #fc8181;
-    --purple: #b794f4;
-    --green: #68d391;
-  }
+:root {
+  --bg: #f7f6f3;
+  --bg2: #ffffff;
+  --bg3: #f0ede8;
+  --border: #e5e0d8;
+  --border2: #d4cec4;
+  --text: #1a1814;
+  --text2: #5a5650;
+  --text3: #9a9490;
+  --accent: #2d5a8e;
+  --accent2: #1a7a5e;
+  --gold: #b8860b;
+  --coral: #c0392b;
+  --purple: #6b4c9a;
+  --v1: #2d5a8e;
+  --v2: #1a7a5e;
+  --v3: #8e4a2d;
+  --v4: #6b4c9a;
+}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    font-family: 'Noto Sans SC', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.7;
-    font-size: 14px;
-    min-height: 100vh;
-  }
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 14px;
+}
 
-  /* Background decoration */
-  body::before {
-    content: '';
-    position: fixed;
-    top: -200px; right: -200px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(99,179,237,0.06) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
+/* Layout */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px 100px;
+}
 
-  body::after {
-    content: '';
-    position: fixed;
-    bottom: -200px; left: -200px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(79,209,197,0.05) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
+/* Cover */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--border2);
+  margin-bottom: 80px;
+}
 
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-    position: relative;
-    z-index: 1;
-  }
+.cover-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 32px;
+}
 
-  /* Hero */
-  .hero {
-    padding: 72px 0 56px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 56px;
-  }
+.cover h1 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 52px;
+  font-weight: 300;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 32px;
+  letter-spacing: -.02em;
+}
 
-  .hero-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+.cover h1 strong {
+  font-weight: 700;
+  display: block;
+}
 
-  .hero-label::before {
-    content: '';
-    display: inline-block;
-    width: 24px; height: 1px;
-    background: var(--accent);
-  }
+.cover-desc {
+  font-size: 16px;
+  color: var(--text2);
+  max-width: 520px;
+  line-height: 1.9;
+  margin-bottom: 48px;
+  font-weight: 300;
+}
 
-  .hero h1 {
-    font-family: 'Noto Serif SC', serif;
-    font-size: 42px;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 16px;
-    background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+.cover-tags {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
-  .hero-sub {
-    font-size: 16px;
-    color: var(--text2);
-    max-width: 580px;
-    line-height: 1.8;
-    margin-bottom: 32px;
-  }
+.cover-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  color: var(--text2);
+  letter-spacing: .05em;
+}
 
-  .hero-meta {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
+/* TOC */
+.toc {
+  margin-bottom: 80px;
+  padding: 32px 0;
+  border-top: 2px solid var(--text);
+  border-bottom: 1px solid var(--border);
+}
 
-  .meta-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: var(--text3);
-  }
+.toc-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 20px;
+}
 
-  .meta-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent2);
-  }
+.toc-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 40px;
+}
 
-  /* Section */
-  .section {
-    margin-bottom: 56px;
-  }
+.toc-list li a {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 5px 0;
+  border-bottom: 1px solid transparent;
+  transition: all .15s;
+}
 
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
+.toc-list li a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
 
-  .section-num {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: .1em;
-    min-width: 28px;
-  }
+.toc-num {
+  font-size: 10px;
+  color: var(--text3);
+  min-width: 20px;
+}
 
-  .section-title {
-    font-family: 'Noto Serif SC', serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--text);
-  }
+/* Section */
+.section {
+  margin-bottom: 80px;
+}
 
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
+.section-header {
+  border-top: 2px solid var(--text);
+  padding-top: 20px;
+  margin-bottom: 36px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
 
-  /* Cards */
-  .card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-bottom: 12px;
-    transition: border-color .2s;
-  }
+.section-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
 
-  .card:hover { border-color: var(--border2); }
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 6px;
+}
 
-  .card-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
+/* Prose */
+.prose {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.9;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
 
-  .card-sub {
-    font-size: 12px;
-    color: var(--text3);
-    margin-bottom: 14px;
-  }
+.prose strong {
+  color: var(--text);
+  font-weight: 500;
+}
 
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+/* Highlight block */
+.highlight {
+  border-left: 3px solid var(--text);
+  padding: 16px 20px;
+  margin: 24px 0;
+  background: var(--bg2);
+}
 
-  @media (max-width: 640px) {
-    .grid-2, .grid-3 { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 28px; }
-  }
+.highlight p {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.8;
+  font-weight: 300;
+}
 
-  /* Row list */
-  .row-list { }
-  .row-item {
-    display: flex;
-    gap: 16px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-  }
-  .row-item:last-child { border-bottom: none; }
-  .row-label {
-    min-width: 96px;
-    font-weight: 500;
-    color: var(--accent2);
-    flex-shrink: 0;
-    font-size: 12px;
-  }
-  .row-value { color: var(--text2); line-height: 1.6; }
+.highlight strong {
+  font-weight: 600;
+}
 
-  /* Tags */
-  .tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin: 2px 3px 2px 0;
-  }
-  .tag-blue { background: rgba(99,179,237,0.12); color: #90cdf4; border: 1px solid rgba(99,179,237,0.2); }
-  .tag-teal { background: rgba(79,209,197,0.12); color: #81e6d9; border: 1px solid rgba(79,209,197,0.2); }
-  .tag-purple { background: rgba(183,148,244,0.12); color: #d6bcfa; border: 1px solid rgba(183,148,244,0.2); }
-  .tag-gold { background: rgba(246,201,14,0.1); color: #fbd38d; border: 1px solid rgba(246,201,14,0.2); }
-  .tag-coral { background: rgba(252,129,129,0.1); color: #feb2b2; border: 1px solid rgba(252,129,129,0.2); }
-  .tag-green { background: rgba(104,211,145,0.1); color: #9ae6b4; border: 1px solid rgba(104,211,145,0.2); }
-  .tag-gray { background: rgba(255,255,255,0.05); color: var(--text3); border: 1px solid var(--border); }
+/* Capability grid */
+.cap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  margin: 24px 0;
+}
 
-  /* Alert boxes */
-  .alert {
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-top: 12px;
-    font-size: 12px;
-    line-height: 1.7;
-  }
-  .alert strong { font-weight: 500; }
-  .alert-blue { background: rgba(99,179,237,0.08); border-left: 3px solid var(--accent); color: #bee3f8; }
-  .alert-gold { background: rgba(246,201,14,0.08); border-left: 3px solid var(--gold); color: #fefcbf; }
-  .alert-coral { background: rgba(252,129,129,0.08); border-left: 3px solid var(--coral); color: #fed7d7; }
-  .alert-green { background: rgba(104,211,145,0.08); border-left: 3px solid var(--green); color: #c6f6d5; }
-  .alert-teal { background: rgba(79,209,197,0.08); border-left: 3px solid var(--accent2); color: #b2f5ea; }
+.cap-item {
+  background: var(--bg2);
+  padding: 20px;
+}
 
-  /* Layer blocks */
-  .layer {
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-bottom: 8px;
-    border: 1px solid;
-  }
-  .layer-gray { background: var(--bg2); border-color: var(--border); }
-  .layer-blue { background: rgba(99,179,237,0.05); border-color: rgba(99,179,237,0.2); }
-  .layer-teal { background: rgba(79,209,197,0.05); border-color: rgba(79,209,197,0.2); }
-  .layer-purple { background: rgba(183,148,244,0.05); border-color: rgba(183,148,244,0.2); }
-  .layer-gold { background: rgba(246,201,14,0.05); border-color: rgba(246,201,14,0.2); }
+.cap-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 10px;
+}
 
-  .layer-title {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-  .layer-sub {
-    font-size: 11px;
-    color: var(--text3);
-    margin-bottom: 12px;
-  }
-  .layer-body {
-    font-size: 12px;
-    color: var(--text2);
-    line-height: 1.7;
-  }
+.cap-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 8px;
+}
 
-  /* Arrow connector */
-  .arrow-connector {
-    text-align: center;
-    padding: 6px 0;
-    color: var(--text3);
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-  .arrow-connector::before, .arrow-connector::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
+.cap-body {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.7;
+  font-weight: 300;
+}
 
-  /* Phase cards */
-  .phase {
-    border-radius: 12px;
-    padding: 20px 24px;
-    border: 1px solid;
-    position: relative;
-    overflow: hidden;
-  }
-  .phase::before {
-    content: attr(data-num);
-    position: absolute;
-    top: -10px; right: 16px;
-    font-family: 'Noto Serif SC', serif;
-    font-size: 72px;
-    font-weight: 700;
-    opacity: .04;
-    line-height: 1;
-    color: var(--text);
-  }
-  .phase-1 { background: var(--bg2); border-color: var(--border); }
-  .phase-2 { background: rgba(183,148,244,0.04); border-color: rgba(183,148,244,0.18); }
-  .phase-3 { background: rgba(79,209,197,0.04); border-color: rgba(79,209,197,0.18); }
-  .phase-4 { background: rgba(246,201,14,0.04); border-color: rgba(246,201,14,0.18); }
+/* Version timeline */
+.version-timeline {
+  margin: 32px 0;
+}
 
-  .phase-header {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    margin-bottom: 8px;
-  }
-  .phase-num-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--text3);
-  }
-  .phase-title {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text);
-  }
-  .phase-time {
-    margin-left: auto;
-    font-size: 11px;
-    color: var(--text3);
-    background: rgba(255,255,255,0.05);
-    padding: 2px 8px;
-    border-radius: 4px;
-  }
-  .phase-goal {
-    font-size: 12px;
-    color: var(--text2);
-    line-height: 1.6;
-    margin-bottom: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
-  }
-  .step {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 7px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 12px;
-  }
-  .step:last-child { border-bottom: none; }
-  .step-n {
-    min-width: 20px; height: 20px;
-    border-radius: 50%;
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    font-size: 10px;
-    font-weight: 500;
-    color: var(--text3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-  .step-text { color: var(--text2); line-height: 1.6; }
-  .step-text strong { color: var(--text); font-weight: 500; }
+.version-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0;
+  margin-bottom: 2px;
+}
 
-  /* Status badges */
-  .status {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 500;
-    padding: 2px 7px;
-    border-radius: 4px;
-    margin-left: 6px;
-    vertical-align: middle;
-  }
-  .status-done { background: rgba(104,211,145,0.15); color: #68d391; }
-  .status-partial { background: rgba(246,201,14,0.12); color: #f6c90e; }
-  .status-pending { background: rgba(252,129,129,0.12); color: #fc8181; }
+.version-sidebar {
+  padding: 24px 20px 24px 0;
+  border-right: 2px solid var(--border2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
 
-  /* Cost table */
-  .cost-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 9px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-  }
-  .cost-row:last-child { border-bottom: none; }
-  .cost-label { color: var(--text2); }
-  .cost-val { font-weight: 500; color: var(--accent); }
-  .cost-total .cost-label { color: var(--text); font-weight: 500; }
-  .cost-total .cost-val { font-size: 16px; color: var(--gold); }
+.version-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 2px;
+}
 
-  /* Pending items */
-  .pending-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 12px;
-  }
-  .pending-item:last-child { border-bottom: none; }
-  .pending-who {
-    min-width: 72px;
-    font-weight: 500;
-    font-size: 11px;
-    flex-shrink: 0;
-    padding: 2px 8px;
-    border-radius: 4px;
-    text-align: center;
-  }
-  .pw-boss { background: rgba(252,129,129,0.12); color: #fc8181; }
-  .pw-gao { background: rgba(99,179,237,0.12); color: #90cdf4; }
-  .pw-you { background: rgba(79,209,197,0.12); color: #81e6d9; }
-  .pw-later { background: rgba(255,255,255,0.06); color: var(--text3); }
-  .pending-content { color: var(--text2); line-height: 1.6; }
+.v1-tag { background: rgba(45,90,142,0.1); color: var(--v1); }
+.v2-tag { background: rgba(26,122,94,0.1); color: var(--v2); }
+.v3-tag { background: rgba(142,74,45,0.1); color: var(--v3); }
+.v4-tag { background: rgba(107,76,154,0.1); color: var(--v4); }
 
-  /* Suggest box */
-  .suggest {
-    border-left: 2px solid var(--accent2);
-    padding: 12px 16px;
-    margin: 10px 0;
-    background: rgba(79,209,197,0.04);
-    border-radius: 0 8px 8px 0;
-    font-size: 12px;
-    color: var(--text2);
-    line-height: 1.7;
-  }
-  .suggest strong { color: var(--text); font-weight: 500; }
+.version-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  position: relative;
+  right: -5px;
+  flex-shrink: 0;
+}
+.v1-dot { background: var(--v1); }
+.v2-dot { background: var(--v2); }
+.v3-dot { background: var(--v3); }
+.v4-dot { background: var(--v4); }
 
-  /* Filter rules */
-  .filter-in { background: rgba(104,211,145,0.06); border: 1px solid rgba(104,211,145,0.15); border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; }
-  .filter-out { background: rgba(252,129,129,0.06); border: 1px solid rgba(252,129,129,0.15); border-radius: 8px; padding: 12px 14px; }
-  .filter-title { font-size: 11px; font-weight: 500; margin-bottom: 6px; }
-  .filter-in .filter-title { color: #68d391; }
-  .filter-out .filter-title { color: #fc8181; }
-  .filter-body { font-size: 11px; color: var(--text2); line-height: 1.7; }
+.version-body {
+  padding: 24px 0 24px 24px;
+}
 
-  /* Divider */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 48px 0;
-  }
+.version-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
 
-  /* Knowledge flow */
-  .flow {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin: 8px 0;
-    font-size: 11px;
-  }
-  .flow-node {
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 6px;
-    padding: 4px 10px;
-    color: var(--text2);
-  }
-  .flow-node-hi {
-    background: rgba(99,179,237,0.1);
-    border-color: rgba(99,179,237,0.25);
-    color: #90cdf4;
-  }
-  .flow-arr { color: var(--text3); }
+.version-goal {
+  font-size: 13px;
+  color: var(--text2);
+  margin-bottom: 12px;
+  line-height: 1.7;
+  font-weight: 300;
+}
 
-  /* TOC */
-  .toc {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-bottom: 48px;
-  }
-  .toc-title {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--text3);
-    margin-bottom: 14px;
-  }
-  .toc-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    list-style: none;
-  }
-  .toc-list a {
-    font-size: 12px;
-    color: var(--text2);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 0;
-    transition: color .2s;
-  }
-  .toc-list a:hover { color: var(--accent); }
-  .toc-list a::before {
-    content: '';
-    width: 4px; height: 4px;
-    border-radius: 50%;
-    background: var(--border2);
-    flex-shrink: 0;
-  }
+.version-delivers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
 
-  /* Footer */
-  .footer {
-    border-top: 1px solid var(--border);
-    padding-top: 32px;
-    margin-top: 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 11px;
-    color: var(--text3);
-  }
+.deliver-tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  color: var(--text2);
+  font-weight: 400;
+}
 
-  /* Scroll reveal animation */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .section { animation: fadeUp .5s ease both; }
-  .section:nth-child(2) { animation-delay: .05s; }
-  .section:nth-child(3) { animation-delay: .1s; }
-  .section:nth-child(4) { animation-delay: .15s; }
-  .section:nth-child(5) { animation-delay: .2s; }
+/* Module detail */
+.module {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  margin-bottom: 2px;
+}
+
+.module-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.module-num {
+  font-size: 10px;
+  color: var(--text3);
+  font-weight: 500;
+  min-width: 24px;
+}
+
+.module-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1;
+}
+
+.module-version {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+
+.module-body {
+  padding: 24px;
+}
+
+.module-section {
+  margin-bottom: 20px;
+}
+
+.module-section:last-child { margin-bottom: 0; }
+
+.ms-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+
+.ms-content {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.ms-content strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Debate block */
+.debate {
+  background: #fff8f0;
+  border: 1px solid #e8d4b0;
+  border-left: 3px solid var(--gold);
+  padding: 16px 20px;
+  margin-top: 12px;
+}
+
+.debate-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.debate-content {
+  font-size: 12px;
+  color: #7a6040;
+  line-height: 1.8;
+}
+
+/* Pending block */
+.pending {
+  background: #f8f0f8;
+  border: 1px solid #dcc8dc;
+  border-left: 3px solid var(--purple);
+  padding: 16px 20px;
+  margin-top: 12px;
+}
+
+.pending-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 8px;
+}
+
+.pending-content {
+  font-size: 12px;
+  color: #6a5070;
+  line-height: 1.8;
+}
+
+/* Resource table */
+.resource-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.resource-table th {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border2);
+  background: var(--bg3);
+}
+
+.resource-table td {
+  font-size: 12px;
+  color: var(--text2);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.7;
+}
+
+.resource-table tr:last-child td { border-bottom: none; }
+
+/* Decision items */
+.decision-list {
+  margin: 16px 0;
+}
+
+.decision-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.decision-item:last-child { border-bottom: none; }
+
+.decision-who {
+  min-width: 80px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 2px;
+  height: fit-content;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.dw-boss { background: rgba(192,57,43,0.08); color: var(--coral); border: 1px solid rgba(192,57,43,0.2); }
+.dw-gao { background: rgba(45,90,142,0.08); color: var(--accent); border: 1px solid rgba(45,90,142,0.2); }
+.dw-you { background: rgba(26,122,94,0.08); color: var(--accent2); border: 1px solid rgba(26,122,94,0.2); }
+
+.decision-content {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.decision-content strong { color: var(--text); font-weight: 500; }
+
+/* Divider */
+hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+/* Footer */
+.footer {
+  border-top: 2px solid var(--text);
+  padding-top: 24px;
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: .05em;
+}
+
+@media (max-width: 640px) {
+  .cover h1 { font-size: 32px; }
+  .toc-list { grid-template-columns: 1fr; }
+  .cap-grid { grid-template-columns: 1fr; }
+  .version-item { grid-template-columns: 80px 1fr; }
+  .container { padding: 0 20px 60px; }
+}
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero-label">内部战略文档 · 机密</div>
-    <h1>数字化决策大脑<br>拟合超级个体系统</h1>
-    <p class="hero-sub">打造一个持续了解我们公司、有自己判断标准、能主动诊断和建议的 AI 决策伙伴。集合群体智慧，赋能每一个个体。</p>
-    <div class="hero-meta">
-      <div class="meta-item"><span class="meta-dot"></span>印度包网棋牌平台</div>
-      <div class="meta-item"><span class="meta-dot"></span>核心目标：提升平台收益</div>
-      <div class="meta-item"><span class="meta-dot"></span>预计启动周期：6~9 个月</div>
-      <div class="meta-item"><span class="meta-dot"></span>MVP月成本：$95~255</div>
+  <!-- Cover -->
+  <div class="cover">
+
+    <h1>数字化决策大脑<strong>拟合超级个体系统</strong></h1>
+    <p class="cover-desc">打造一个与公司共同成长的 AI 决策伙伴——它理解我们的思维方式，监控我们的业务数据，洞察行业竞品动向，并在每一个决策节点提供有数据支撑、有案例论证的建议。</p>
+    <div class="cover-tags">
+      <span class="cover-tag">内部立项</span>
+      <span class="cover-tag">四版本规划</span>
+      <span class="cover-tag">AI 驱动</span>
+      <span class="cover-tag">持续迭代</span>
     </div>
   </div>
 
   <!-- TOC -->
   <div class="toc">
-    <p class="toc-title">文档目录</p>
+    <p class="toc-label">目录</p>
     <ul class="toc-list">
-      <li><a href="#s1">一、系统定位与核心价值</a></li>
-      <li><a href="#s2">二、系统三层架构</a></li>
-      <li><a href="#s3">三、核心机制设计</a></li>
-      <li><a href="#s4">四、已规划核心子模块</a></li>
-      <li><a href="#s5">五、推进路径（四阶段）</a></li>
-      <li><a href="#s6">六、启动成本估算</a></li>
-      <li><a href="#s7">七、待补充关键内容</a></li>
-      <li><a href="#s8">八、核心建议</a></li>
+      <li><a href="#s1"><span class="toc-num">01</span>我们要做什么</a></li>
+      <li><a href="#s2"><span class="toc-num">02</span>系统终态与总目标</a></li>
+      <li><a href="#s3"><span class="toc-num">03</span>版本规划总览</a></li>
+      <li><a href="#s4"><span class="toc-num">04</span>各版本模块细节</a></li>
+      <li><a href="#s5"><span class="toc-num">05</span>资源与成本</a></li>
+      <li><a href="#s6"><span class="toc-num">06</span>需要决策的事项</a></li>
     </ul>
   </div>
 
@@ -585,470 +574,646 @@
   <div class="section" id="s1">
     <div class="section-header">
       <span class="section-num">01</span>
-      <h2 class="section-title">系统定位与核心价值</h2>
-      <div class="section-line"></div>
     </div>
-    <div class="card">
-      <p class="card-title">数字化决策大脑 — 拟合超级个体</p>
-      <p class="card-sub">不是工具，是持续生长的 AI 决策伙伴</p>
-      <div class="row-list">
-        <div class="row-item">
-          <span class="row-label">解决什么问题</span>
-          <span class="row-value">方案上线才发现效果不好浪费研发成本；经验留在个人头脑里无法传承；决策缺乏数据支撑；团队能力提升没有系统化路径</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">核心价值</span>
-          <span class="row-value">集合公司群体智慧，赋能每一个个体。越用越懂公司，越用越准。最终目标：提升平台收益，降低无效研发投入</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">与普通AI差异</span>
-          <span class="row-value">普通AI没有公司上下文，给的是通用建议。这个系统持续积累公司认知，每次对话都基于你们公司的真实现状做判断，不是通用答案</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">AI角色定位</span>
-          <span class="row-value">建议者，不是决策者。是否采纳取决于使用者。系统陪伴成长，会犯错，错误是校准机会，不是否定系统的理由</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">成长方式</span>
-          <span class="row-value">陪伴式成长。每次真实决策后回测校准，置信度模型持续优化，知识库随使用越来越准</span>
-        </div>
+    <h2 class="section-title">我们要做什么</h2>
+
+    <p class="prose">我们正在构建一个 <strong>持续学习、持续生长的 AI 决策系统</strong>。它不是一个固定功能的工具，而是一个会随着公司的每一次决策、每一个项目、每一位员工的积累而不断进化的伙伴。</p>
+
+    <div class="highlight">
+      <p>当我们需要上线一个新的运营活动，它能在上线前告诉我们<strong>预期效果、潜在风险、以及竞品在类似阶段是怎么做的</strong>。当我们面临方案选择，它能调取公司历史上所有相关决策的经验，给出<strong>有数据支撑、有案例论证的建议</strong>，而不是主观判断。</p>
+    </div>
+
+    <p class="prose">现在我们面临的核心问题是：决策依赖个人经验，经验无法沉淀传承；方案上线后才知道效果好不好；团队的集体智慧分散在每个人的头脑里，没有办法被系统性地调用。</p>
+
+    <p class="prose">这个系统要解决的，就是把<strong>分散的经验变成可调用的集体智慧，把事后复盘变成事前预判。</strong></p>
+
+    <div class="cap-grid">
+      <div class="cap-item">
+        <p class="cap-label">决策前</p>
+        <p class="cap-title">主动提供方案</p>
+        <p class="cap-body">基于市场竞品、跨行业案例、内部历史数据，给出有理由和数据支撑的思路与落地建议</p>
+      </div>
+      <div class="cap-item">
+        <p class="cap-label">决策中</p>
+        <p class="cap-title">查漏补缺</p>
+        <p class="cap-body">对方案进行全面审查，识别遗漏和风险，用群体智慧覆盖个人盲点</p>
+      </div>
+      <div class="cap-item">
+        <p class="cap-label">决策后</p>
+        <p class="cap-title">持续校准</p>
+        <p class="cap-body">记录每次决策结果，对照预测持续修正，越用越准，越用越懂我们</p>
       </div>
     </div>
   </div>
-
-  <hr class="divider">
 
   <!-- Section 2 -->
   <div class="section" id="s2">
     <div class="section-header">
       <span class="section-num">02</span>
-      <h2 class="section-title">系统三层架构</h2>
-      <div class="section-line"></div>
+    </div>
+    <h2 class="section-title">系统终态与总目标</h2>
+
+    <p class="prose">系统完全建成后，它在公司里的角色是：</p>
+
+    <div class="highlight">
+      <p><strong>一个与公司共同成长的决策伙伴。</strong>它了解我们的业务现状和数据，理解我们的思维方式和判断标准，能从行业竞品和跨类型产品中总结归纳核心思路，为我们的需求提供有合理理由、有数据论证的落地方案。同时，它积累了公司所有员工的正向经验，能协助每一个人审查文档、检查代码逻辑、补充上线验收流程，用集体智慧提升每个个体的工作水平。</p>
     </div>
 
-    <div class="layer layer-gray">
-      <p class="layer-title">第一层 · 肉体层 — 公司认知底座</p>
-      <p class="layer-sub">AI 对公司的持续认知积累，越输入越完整</p>
-      <div class="grid-3">
-        <div>
-          <p style="font-size:11px;font-weight:500;color:var(--accent2);margin-bottom:8px">组织认知</p>
-          <p class="layer-body">组织架构与人员构成<br>开发能力量化评估<br>日报/周报/代码记录<br>团队产能与瓶颈<br>历史项目完成情况</p>
-        </div>
-        <div>
-          <p style="font-size:11px;font-weight:500;color:var(--accent2);margin-bottom:8px">产品认知</p>
-          <p class="layer-body">功能文档知识库<br>数数科技数据接入<br>版本迭代历史记录<br>用户画像三层体系<br>规律知识库积累</p>
-        </div>
-        <div>
-          <p style="font-size:11px;font-weight:500;color:var(--accent2);margin-bottom:8px">职业智慧库</p>
-          <p class="layer-body">按职业分类沉淀经验<br>正向经验自动提取<br>适用条件自动推断<br>使用后持续修正<br>跨职业抽象通用经验</p>
-        </div>
+    <p class="prose">达到终态需要四个版本的递进建设。每个版本都有独立的交付价值，不依赖后续版本才能发挥作用。</p>
+
+    <div class="cap-grid">
+      <div class="cap-item">
+        <p class="cap-label" style="color:var(--v1)">版本一基础</p>
+        <p class="cap-title">公司认知底座</p>
+        <p class="cap-body">系统理解我们是谁、怎么思考、有什么数据。这是后续所有能力的地基。</p>
+      </div>
+      <div class="cap-item">
+        <p class="cap-label" style="color:var(--v2)">版本二核心</p>
+        <p class="cap-title">决策辅助 + 数字孪生</p>
+        <p class="cap-body">监控业务指标，模拟用户和游戏环境，对新策略做上线前的效果预判。</p>
+      </div>
+      <div class="cap-item">
+        <p class="cap-label" style="color:var(--v3)">版本三视野</p>
+        <p class="cap-title">行业洞察</p>
+        <p class="cap-body">对标竞品，分析他们在不同阶段的决策逻辑，为我们提供有依据的参考。</p>
       </div>
     </div>
-
-    <div class="arrow-connector">↕ 相互影响，持续更新</div>
-
-    <div class="layer layer-purple">
-      <p class="layer-title">第二层 · 思想层 — 行为准则与判断标准</p>
-      <p class="layer-sub">决定 AI 用什么标准去诊断和建议，是整个系统的价值观地基</p>
-      <div class="grid-2">
-        <div>
-          <p style="font-size:11px;font-weight:500;color:#d6bcfa;margin-bottom:8px">行业层准则 <span class="status status-pending">老大待输入</span></p>
-          <p class="layer-body">公司使命 · 愿景 · 价值观<br>责任博彩的思考路径和边界<br>印度市场监管合规边界<br>行业最佳实践标准</p>
-        </div>
-        <div>
-          <p style="font-size:11px;font-weight:500;color:#d6bcfa;margin-bottom:8px">社会层准则 <span class="status status-pending">老高待输入</span></p>
-          <p class="layer-body">自然界规律<br>底层判断逻辑框架<br>普世价值约束</p>
-        </div>
-      </div>
-      <div class="alert alert-coral" style="margin-top:12px"><strong>重要：</strong>思想层必须由公司主动定义，不能用默认值代替。没有它，AI 在面对模糊决策时会漂移，给出没有立场的答案。这是老板需要拍板的核心问题之一。</div>
-    </div>
-
-    <div class="arrow-connector">↕ 认知驱动输出</div>
-
-    <div class="layer layer-teal">
-      <p class="layer-title">第三层 · 工作层 — 四类决策输出</p>
-      <p class="layer-sub">基于前两层，持续产出决策支持</p>
-      <div class="grid-2">
-        <div class="card" style="margin-bottom:8px">
-          <p class="card-title" style="font-size:13px">① 企业现状诊断</p>
-          <p class="layer-body">定期扫描公司数据和组织状态，主动发现问题，不等人来问。收益异常预警、团队产能瓶颈、产品健康度监控。</p>
-        </div>
-        <div class="card" style="margin-bottom:8px">
-          <p class="card-title" style="font-size:13px">② 方案预判与建议</p>
-          <p class="layer-body">输入产品文档 → 评估效果预测和风险 → 输出建议推进/调整/不推进的结论。降低无效研发投入的核心机制。</p>
-        </div>
-        <div class="card" style="margin-bottom:8px">
-          <p class="card-title" style="font-size:13px">③ 行业对标分析</p>
-          <p class="layer-body">持续追踪竞品版本更新记录，推断各阶段决策逻辑和问题解法，分析产品前中后期重点方向演变。</p>
-        </div>
-        <div class="card" style="margin-bottom:8px">
-          <p class="card-title" style="font-size:13px">④ 差异化机会创造</p>
-          <p class="layer-body">发现你们能做而竞品没做的机会点，给出需求缺口识别、案例依据支撑、以及为什么这么做的完整理由。</p>
-        </div>
+    <div class="cap-grid" style="margin-top:1px">
+      <div class="cap-item" style="grid-column: 1 / -1">
+        <p class="cap-label" style="color:var(--v4)">版本四 · 智慧积累</p>
+        <p class="cap-title">群体智慧沉淀，赋能每一个人</p>
+        <p class="cap-body">在前三个版本运转过程中持续积累经验，形成文档规范、开发流程标准、审查能力。系统能协助每个员工检查方案、审查代码、补充流程，用集体智慧提升个体水平。</p>
       </div>
     </div>
   </div>
-
-  <hr class="divider">
 
   <!-- Section 3 -->
   <div class="section" id="s3">
     <div class="section-header">
       <span class="section-num">03</span>
-      <h2 class="section-title">核心机制设计</h2>
-      <div class="section-line"></div>
     </div>
+    <h2 class="section-title">版本规划总览</h2>
 
-    <div class="layer layer-blue" style="margin-bottom:12px">
-      <p class="layer-title">多人格协作与群体智慧</p>
-      <p class="layer-sub">不是仿真员工，而是提取群体的正向经验</p>
-      <div class="row-list">
-        <div class="row-item">
-          <span class="row-label">人格来源</span>
-          <span class="row-value">每个员工对应一个虚拟角色，提取其历史正向经验构建。员工离职后经验仍留存，成为公司资产</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">正向经验标准</span>
-          <span class="row-value">方案考虑更全面 OR 代码效率更高，且被他人采纳验证 → 两者结合确认，系统自动判断</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">投票机制</span>
-          <span class="row-value">触发多个虚拟人格各自提出方案，所有人格对所有方案投票（含自己的方案），按票数排序展示</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">结果展示</span>
-          <span class="row-value">默认看综合最优解，需要时展开查看每个方案票数和理由，支持透明辩论过程查阅</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">员工成长</span>
-          <span class="row-value">透明模式，员工自由选择开启。系统识别个人疏忽规律，在相关任务中针对性提醒</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">群体审查</span>
-          <span class="row-value">员工主动提交文档/代码，系统调用全体人格集体检查，覆盖个人盲点，用群体智慧提升个体水平</span>
-        </div>
-      </div>
-    </div>
+    <div class="version-timeline">
 
-    <div class="layer layer-gold" style="margin-bottom:12px">
-      <p class="layer-title">职业智慧知识库 — 经验流动机制</p>
-      <p class="layer-sub">个人经验 → 职业知识库 → 赋能全体 → 持续进化</p>
-      <div class="flow">
-        <span class="flow-node">员工方案/代码</span>
-        <span class="flow-arr">→</span>
-        <span class="flow-node flow-node-hi">系统提取正向经验</span>
-        <span class="flow-arr">→</span>
-        <span class="flow-node">补充到职业知识库</span>
-        <span class="flow-arr">→</span>
-        <span class="flow-node flow-node-hi">自动推断适用条件</span>
-        <span class="flow-arr">→</span>
-        <span class="flow-node">赋能其他员工</span>
-      </div>
-      <div class="flow" style="margin-top:4px">
-        <span class="flow-node">他人采纳/修改/放弃</span>
-        <span class="flow-arr">→</span>
-        <span class="flow-node flow-node-hi">修正适用条件</span>
-        <span class="flow-arr">→</span>
-        <span class="flow-node">知识库持续进化</span>
-      </div>
-      <div class="row-list" style="margin-top:12px">
-        <div class="row-item">
-          <span class="row-label">适用条件</span>
-          <span class="row-value">系统从时间节点、排期、资源约束等参数自动推断每条经验的适用条件，随使用持续修正</span>
+      <div class="version-item">
+        <div class="version-sidebar">
+          <span class="version-tag v1-tag">版本一</span>
+          <span class="version-dot v1-dot"></span>
         </div>
-        <div class="row-item">
-          <span class="row-label">跨职业抽象</span>
-          <span class="row-value">通用思维模式可抽象赋能其他职业。例如"全局最优解"思路适用于所有涉及资源约束的决策场景</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">双轨输出</span>
-          <span class="row-value">每个建议同时给出：当下可落地版本（考虑时间/人力/资源约束）+ 未来最终版本（理想状态完整方案）</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="layer layer-gray">
-      <p class="layer-title">权限控制与决策置信度</p>
-      <p class="layer-sub">保障信息安全，建立决策信任</p>
-      <div class="row-list">
-        <div class="row-item">
-          <span class="row-label">权限分层</span>
-          <span class="row-value">引用内容可见，无权限则内容不可打开。可将对话分享给上级，由上级核实引用内容的真实性</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">置信度分级</span>
-          <span class="row-value">高置信度（直接影响立项）· 中置信度（建议灰度验证）· 低置信度（明确说数据不足，建议先实验）</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">决策日志</span>
-          <span class="row-value">每次评估结论和依据自动存档，人工覆盖系统结论时必须填写理由，形成可追溯的决策记录</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">隐私保护</span>
-          <span class="row-value">数据过滤规则由系统执行，不开放给管理员配置。基于人权和隐私原则，只处理工作相关内容，不干预员工私人生活</span>
+        <div class="version-body">
+          <p class="version-title">建立公司认知底座</p>
+          <p class="version-goal">版本一结束时，系统需要完整掌握以下六个维度的公司信息，每一项都可以被检验。</p>
+          <div class="version-delivers">
+            <span class="deliver-tag">组织架构</span>
+            <span class="deliver-tag">人力安排</span>
+            <span class="deliver-tag">工作内容</span>
+            <span class="deliver-tag">产品现状</span>
+            <span class="deliver-tag">产品数据</span>
+            <span class="deliver-tag">价值观与行为准则</span>
+            <span class="deliver-tag">隐私过滤机制</span>
+          </div>
         </div>
       </div>
 
-      <div style="margin-top:14px">
-        <div class="filter-in">
-          <p class="filter-title">✓ 系统处理的内容</p>
-          <p class="filter-body">工作任务讨论 · 需求分析/方案评审/技术讨论 · 文档代码评论和反馈 · 任务进度同步 · 决策过程和结论 · 项目复盘和经验总结</p>
+      <div class="version-item">
+        <div class="version-sidebar">
+          <span class="version-tag v2-tag">版本二</span>
+          <span class="version-dot v2-dot"></span>
         </div>
-        <div class="filter-out" style="margin-top:8px">
-          <p class="filter-title">✗ 系统自动过滤的内容</p>
-          <p class="filter-body">个人生活话题 · 薪资绩效私下讨论 · 情绪性吐槽 · 个人隐私信息 · 声纹等生物特征数据 · 政治宗教个人信仰 · 非工作频道内容</p>
+        <div class="version-body">
+          <p class="version-title">决策辅助 + 数字孪生</p>
+          <p class="version-goal">基于版本一的认知底座，系统开始监控业务核心指标，构建数字孪生环境，模拟用户行为和游戏场景。对新的运营策略在上线前进行效果预判，让决策从"上线后才知道"变成"上线前已预测"。</p>
+          <div class="version-delivers">
+            <span class="deliver-tag">核心指标监控看板</span>
+            <span class="deliver-tag">用户画像体系</span>
+            <span class="deliver-tag">数字孪生环境</span>
+            <span class="deliver-tag">策略效果预判</span>
+            <span class="deliver-tag">异常预警机制</span>
+          </div>
         </div>
       </div>
+
+      <div class="version-item">
+        <div class="version-sidebar">
+          <span class="version-tag v3-tag">版本三</span>
+          <span class="version-dot v3-dot"></span>
+        </div>
+        <div class="version-body">
+          <p class="version-title">行业视野与竞品洞察</p>
+          <p class="version-goal">同期对照竞品和跨类型产品，追踪他们在不同阶段的版本更新和功能变化，推断其决策逻辑。当我们的某个指标出现问题时，系统能告诉我们竞品在类似阶段做了什么，他们的数据提升大概率因为什么，为我们提供有参考价值的对标依据。</p>
+          <div class="version-delivers">
+            <span class="deliver-tag">竞品版本追踪</span>
+            <span class="deliver-tag">决策逻辑推断</span>
+            <span class="deliver-tag">跨行业案例库</span>
+            <span class="deliver-tag">差异化机会识别</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="version-item">
+        <div class="version-sidebar">
+          <span class="version-tag v4-tag">版本四</span>
+          <span class="version-dot v4-dot"></span>
+        </div>
+        <div class="version-body">
+          <p class="version-title">群体智慧积累与赋能</p>
+          <p class="version-goal">在前三个版本运转的过程中，系统持续积累正向经验，沉淀为职业智慧知识库。积累了足够的文档规范、功能开发流程、决策案例后，系统能协助每个员工审查方案文档、检查代码逻辑、补充上线验收流程，用公司集体智慧提升每一个个体的工作水平。</p>
+          <div class="version-delivers">
+            <span class="deliver-tag">职业智慧知识库</span>
+            <span class="deliver-tag">文档审查能力</span>
+            <span class="deliver-tag">代码逻辑检查</span>
+            <span class="deliver-tag">多人格投票机制</span>
+            <span class="deliver-tag">员工成长提醒</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <hr class="divider">
 
   <!-- Section 4 -->
   <div class="section" id="s4">
     <div class="section-header">
       <span class="section-num">04</span>
-      <h2 class="section-title">已规划核心子模块</h2>
-      <div class="section-line"></div>
     </div>
+    <h2 class="section-title">各版本模块细节</h2>
 
-    <div class="card">
-      <p class="card-title">平台收益决策辅助系统 <span class="status status-done">已详细规划，可启动开发</span></p>
-      <p class="card-sub">工作层最核心的子模块，也是整个系统的第一个落地产品</p>
-      <div class="grid-2">
-        <div class="row-list">
-          <div class="row-item">
-            <span class="row-label">数据底座</span>
-            <span class="row-value">数数科技 + 后端日志，六模块指标体系</span>
-          </div>
-          <div class="row-item">
-            <span class="row-label">用户画像</span>
-            <span class="row-value">行为层 × 来源层 × 偏好层三层叠加</span>
-          </div>
-          <div class="row-item">
-            <span class="row-label">厂商模块</span>
-            <span class="row-value">游戏场景状态变量，影响策略响应概率</span>
-          </div>
+    <p class="prose" style="margin-bottom:24px">以下对每个版本的核心模块进行框架设计说明，包含实现原理、关键难点，以及目前存在分歧、需要进一步探讨的问题。</p>
+
+    <!-- V1 Modules -->
+    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v1);margin-bottom:12px">版本一模块：建立公司认知底座</p>
+
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">1.1</span>
+        <span class="module-title">思想层 — 公司价值观与判断标准定义</span>
+        <span class="module-version v1-tag">版本一</span>
+      </div>
+      <div class="module-body">
+        <div class="module-section">
+          <p class="ms-label">框架设计</p>
+          <p class="ms-content">思想层是整个系统的价值观地基，决定 AI 用什么标准去判断和建议。分为两个层次：<strong>行业层</strong>（公司使命愿景价值观、责任博彩边界、印度市场合规边界）和<strong>社会层</strong>（更底层的判断逻辑框架）。这些内容以结构化文档的形式写入系统，作为所有推演的基础约束。</p>
         </div>
-        <div class="row-list">
-          <div class="row-item">
-            <span class="row-label">AI推演层</span>
-            <span class="row-value">Supabase + Claude API + 文档知识库</span>
-          </div>
-          <div class="row-item">
-            <span class="row-label">三种模式</span>
-            <span class="row-value">目标导向 · 方案预判 · 指标预测</span>
-          </div>
-          <div class="row-item">
-            <span class="row-label">技术路径</span>
-            <span class="row-value">Claude Code 实现，阿里云/DO 部署</span>
-          </div>
+        <div class="module-section">
+          <p class="ms-label">实现原理</p>
+          <p class="ms-content">由公司管理层主动定义，以自然语言文档形式输入。系统在每次给出建议时，会先用思想层内容过滤——确保建议符合公司价值观和合规边界，再输出结论。</p>
+        </div>
+        <div class="pending">
+          <p class="pending-label">待确认事项</p>
+          <p class="pending-content">公司使命愿景的正式定义（外部输入）· 责任博彩的思考路径和红线（外部输入）· 社会层判断逻辑框架（外部输入）。这是整个系统启动的前置条件，需要在版本一开发前完成定义。</p>
         </div>
       </div>
-      <div class="alert alert-green" style="margin-top:12px"><strong>预期价值：</strong>10个研发方案里，系统帮助筛掉6个低效方案，研发资源集中在高确定性方案上，研发成功率从40%提升至80%+</div>
     </div>
 
-    <div style="margin-top:12px">
-      <p style="font-size:12px;color:var(--text3);margin-bottom:12px">六模块指标体系（数数科技配置）</p>
-      <div class="grid-3">
-        <div class="card"><p class="card-title" style="font-size:12px">收益健康看板</p><p class="layer-body">日/周充值总额 · 充值成功率 · ARPU/ARPPU · 渠道贡献占比</p></div>
-        <div class="card"><p class="card-title" style="font-size:12px">用户留存分析</p><p class="layer-body">分群留存曲线 · 首次付费后留存 · 流失预警信号</p></div>
-        <div class="card"><p class="card-title" style="font-size:12px">付费转化漏斗</p><p class="layer-body">注册→首充漏斗 · 游戏场景→充值 · 输赢状态→充值</p></div>
-        <div class="card"><p class="card-title" style="font-size:12px">游戏行为分析</p><p class="layer-body">游戏活跃度分布 · 切换路径 · 游戏×用户价值</p></div>
-        <div class="card"><p class="card-title" style="font-size:12px">渠道代理质量</p><p class="layer-body">渠道用户质量矩阵 · 代理层级对比 · 套利风险监控</p></div>
-        <div class="card"><p class="card-title" style="font-size:12px">活动效果评估</p><p class="layer-body">活动参与率 · 活动ROI · 活动前后留存对比</p></div>
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">1.2</span>
+        <span class="module-title">公司认知底座 — 六个维度的信息建立</span>
+        <span class="module-version v1-tag">版本一</span>
+      </div>
+      <div class="module-body">
+        <div class="module-section">
+          <p class="ms-label">组织架构与人力</p>
+          <p class="ms-content">输入公司整体架构、各部门职责、人员构成和汇报关系。同时建立<strong>人员能力画像</strong>——通过日报周报、代码提交记录、功能完成情况，量化每个人的能力边界和产出水平，识别团队产能现状和瓶颈。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">工作内容</p>
+          <p class="ms-content">接入禅道任务流转记录（需求变更、验收标准）、版本发布历史（功能上线记录、延期原因、被砍功能）、复盘文档（经验总结）。系统理解当前在推进什么、各项目进度状态、历史项目的经验沉淀。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">产品现状</p>
+          <p class="ms-content">整理运营中的产品清单，将各产品的功能架构、核心玩法逻辑、设计意图整理为结构化文档入库。系统需要理解每个功能存在的原因和它解决的问题，而不只是功能描述。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">产品数据基准</p>
+          <p class="ms-content">建立核心业务指标的历史基准档案——各指标的正常范围、历史趋势、以及每次版本上线前后的数据变化记录。这份档案同时是版本二数字孪生的校准基础。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">思维方式提炼</p>
+          <p class="ms-content">通过接入 Lark 工作文档和群聊记录，系统分析真实工作中的问题解决过程、方案讨论路径、决策收敛方式，自动生成思维方式认知文档初稿。管理层审阅确认后写入思想层，作为系统判断的行为准则。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">隐私保护机制</p>
+          <p class="ms-content">过滤规则由系统执行，不开放给管理员配置。只处理工作相关内容，自动过滤个人生活话题、薪资绩效讨论、情绪性吐槽、个人隐私信息。对全体员工透明公示。</p>
+        </div>
+        <div class="debate">
+          <p class="debate-label">待讨论分歧点</p>
+          <p class="debate-content">六个维度的信息接入有优先级差异，建议按价值高低排序推进：产品功能文档 + 数据基准档案（最高优先）→ 复盘文档 + 版本发布记录 → Lark工作文档 → 禅道任务记录 → 代码仓库 → 群聊记录。各数据源的 API 接入成本和可行性需要技术团队评估后确认排期。</p>
+        </div>
       </div>
     </div>
+
+    <!-- V2 Modules -->
+    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v2);margin:32px 0 12px">版本二模块：决策辅助 + 数字孪生</p>
+
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">2.1</span>
+        <span class="module-title">核心指标监控体系</span>
+        <span class="module-version v2-tag">版本二</span>
+      </div>
+      <div class="module-body">
+        <div class="module-section">
+          <p class="ms-label">框架设计</p>
+          <p class="ms-content">基于数数科技平台，构建六个维度的目标驱动指标体系：<strong>收益健康</strong>（充值总额、成功率、ARPU）、<strong>用户留存</strong>（分群留存曲线、流失预警）、<strong>付费转化</strong>（注册到首充漏斗、游戏场景触发充值）、<strong>游戏行为</strong>（游戏切换路径、各游戏用户价值）、<strong>渠道代理质量</strong>（各渠道LTV对比）、<strong>活动效果</strong>（ROI、前后留存对比）。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">实现原理</p>
+          <p class="ms-content">通过数数科技 Open API 读取数据，AI 定期扫描各项指标，主动识别异常波动并给出归因分析。不需要人工去查，系统主动推送预警。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">2.2</span>
+        <span class="module-title">数字孪生 + 策略效果预判</span>
+        <span class="module-version v2-tag">版本二</span>
+      </div>
+      <div class="module-body">
+        <div class="module-section">
+          <p class="ms-label">框架设计</p>
+          <p class="ms-content">构建虚拟的用户群和游戏环境。用户画像分为三层叠加：<strong>行为层</strong>（下注/产出/充值行为）、<strong>来源层</strong>（注册渠道/代理树）、<strong>偏好层</strong>（游戏类型偏好：刺激度、交互强度、开奖频率）。在虚拟环境中对新的运营策略进行模拟，预判不同分群用户的响应概率和整体数据变化。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">实现原理</p>
+          <p class="ms-content">运营人员输入新活动的产品文档，AI 读取文档理解策略意图，调取历史规律知识库（类似策略的历史效果），结合当前用户结构，输出分群预测报告。报告包含：有没有效果、效果多大（含置信区间）、有没有副作用。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">厂商游戏模块的角色</p>
+          <p class="ms-content">不仿真游戏内部数值（RTP、赔率由厂商锁定），但将<strong>游戏场景状态</strong>作为重要变量——玩家当前在玩什么、最近的输赢状态、游戏切换行为，这些直接影响对平台策略的响应概率。同一个充值活动，玩家刚连输三局 vs 刚赢了一把，响应率完全不同。</p>
+        </div>
+        <div class="debate">
+          <p class="debate-label">待讨论分歧点</p>
+          <p class="debate-content">数字孪生的精度边界：第一版仿真误差预计在 15~30% 范围，需要用历史版本节点数据做回测校准。版本节点即天然的"准A/B数据"——每次版本上线前后的用户行为变化，可作为校准标准答案。校准需要至少 2~3 个历史版本的完整数据对照。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- V3 Modules -->
+    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v3);margin:32px 0 12px">版本三模块：行业视野与竞品洞察</p>
+
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">3.1</span>
+        <span class="module-title">竞品追踪与行业对标</span>
+        <span class="module-version v3-tag">版本三</span>
+      </div>
+      <div class="module-body">
+        <div class="module-section">
+          <p class="ms-label">框架设计</p>
+          <p class="ms-content">持续追踪重点竞品（5~10个，名单待补充）的版本更新记录、功能变化、用户评价、广告投放策略。通过时间序列分析，推断竞品在每个阶段面临什么问题、做了什么决策、效果如何。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">核心能力</p>
+          <p class="ms-content"><strong>版本考古</strong>——将竞品的版本更新记录和公开数据结合，推断"他们在某个阶段做了 X 功能，大概率是为了解决 Y 问题，因为之后他们的 Z 指标出现了明显变化"。<strong>阶段对标</strong>——分析产品前中后期各阶段的重点方向演变规律，帮助我们判断自己现在处于什么阶段、下一步应该重点做什么。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">数据来源说明</p>
+          <p class="ms-content">只使用公开信息（应用商店、官网、新闻资讯、用户评价、广告素材）。竞品私有运营数据无法获取，通过公开行为推断策略逻辑，这是合法且有效的方式。</p>
+        </div>
+        <div class="debate">
+          <p class="debate-label">待讨论分歧点</p>
+          <p class="debate-content">竞品名单尚未确认，需要业务团队提供重点追踪对象。跨类型产品的参考范围如何定义——是只看同类棋牌产品，还是扩展到其他实钱游戏品类，需要明确边界。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- V4 Modules -->
+    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v4);margin:32px 0 12px">版本四模块：群体智慧积累与赋能</p>
+
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">4.1</span>
+        <span class="module-title">职业智慧知识库与多人格协作</span>
+        <span class="module-version v4-tag">版本四</span>
+      </div>
+      <div class="module-body">
+        <div class="module-section">
+          <p class="ms-label">框架设计</p>
+          <p class="ms-content">每个员工对应一个虚拟角色，系统从其历史工作产出中提取<strong>正向经验</strong>（方案考虑更全面、代码效率更高，且被他人采纳验证）沉淀为职业知识库。不是仿真员工的思维方式，而是提取可复用的思维模式和最优解。员工离职后经验留存，成为公司的集体资产。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">多人格投票机制</p>
+          <p class="ms-content">当员工提交文档或方案请求审查时，系统触发多个虚拟人格各自提出改进建议，所有人格对所有方案进行投票（含自己的方案），按票数排序展示。默认看综合最优解，需要时可展开查看每个方案的票数和理由。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">员工成长机制</p>
+          <p class="ms-content">透明模式，员工自由选择是否开启。系统识别个人在历史工作中的疏忽规律，在相关任务节点针对性提醒。适用条件由系统自动推断（考虑时间节点、资源约束等参数），随使用持续修正。</p>
+        </div>
+        <div class="debate">
+          <p class="debate-label">待讨论分歧点</p>
+          <p class="debate-content">版本四依赖前三个版本积累足够的数据量才能真正发挥作用，因此启动时间取决于前三个版本的运转周期和数据质量。建议在版本二版本三稳定运行 3~6 个月后，再正式启动版本四的建设。职业知识库的分类粒度（按职能/按项目类型/按决策类型）需要根据实际积累的数据量动态调整。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">4.2</span>
+        <span class="module-title">专家权重体系与防平庸机制</span>
+        <span class="module-version v4-tag">版本四</span>
+      </div>
+      <div class="module-body">
+        <div class="module-section">
+          <p class="ms-label">核心问题</p>
+          <p class="ms-content">群体投票容易产生<strong>平庸陷阱</strong>——多数人倾向选择执行成本低、风险低的普通方案，而专业判断往往来自少数人。如果权重一样，专家的正确判断会被多数人的平庸选择淹没，知识库的质量会随时间退化。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">三层权重架构</p>
+          <p class="ms-content">
+            <strong>普通成员（权重 ×1）</strong> — 标准投票权重。价值在于提供量和覆盖更多场景视角，但不主导知识库方向。<br><br>
+            <strong>认证专家（权重 ×3~5，可调）</strong> — 由超级账号指定，基于其在特定领域的历史准确率和成果认定。注意：专家资格是<strong>领域绑定</strong>的，产品策划专家只在产品方案上有高权重，不影响技术架构判断，防止权威外溢。<br><br>
+            <strong>超级账号（最高权重 + 管理权限）</strong> — 可指定和撤销专家资格；可标记某条经验为"强制入库"或"强制排除"；可在系统给出结论时直接覆盖并附注理由；所有覆盖操作自动记录，形成可审计的决策日志。
+          </p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">场景归因分析——防止经验失真</p>
+          <p class="ms-content">当多数人选择了一个普通方案时，系统不只记录"此方案票数多"，还要分析并记录<strong>他们为什么这么选</strong>——是执行成本约束、资源限制、还是对更好方案不了解。每条经验在知识库里携带完整的场景条件标签，后续调用时系统会判断当前场景是否匹配，而不是直接套用。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">少数专家意见保护机制</p>
+          <p class="ms-content">当专家判断与多数人不一致时，系统<strong>不用票数压制专家意见</strong>，而是同时保留两个结论：「多数方案」（适用于资源受限、执行优先的场景）和「专家方案」（适用于条件充足、追求最优的场景），并标注各自适用条件。使用者根据当前实际情况自行判断采用哪个。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">打分机制——客观结果优先于主观评价</p>
+          <p class="ms-content">不依赖人工主观打分，依赖<strong>客观结果回流</strong>：被采纳的方案上线后数据是否符合预期；被参考的代码有没有出现 bug 或被推翻重写；系统推荐的策略，真实效果和预测是否吻合。结果越好，对应经验的可信度评分越高。时间越长，评分越有根据。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">专家资格动态管理</p>
+          <p class="ms-content">专家资格不是永久的，基于历史准确率动态调整。专家推荐方案结果好则权重维持或提升；连续误判则触发人工复核提醒。系统同时识别<strong>领域漂移</strong>——专家开始对非擅长领域发表意见时，自动降低其在该领域的权重，防止权威扩散导致判断失真。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">防投毒机制</p>
+          <p class="ms-content">
+            <strong>多重验证</strong> — 单一来源的经验不直接入库，需要跨来源、跨时间、跨项目的交叉印证后才提升权重。<br><br>
+            <strong>来源可信度分级</strong> — 有代码提交记录支撑的 > 有数据结果印证的 > 有文档记录的 > 口头描述的。可信度越低的来源，入库门槛越高。<br><br>
+            <strong>异常行为检测</strong> — 某个来源在短时间内输入大量与历史模式不符的内容，系统标记为异常，暂缓入库，推送给超级账号人工审核。<br><br>
+            <strong>冷启动保护期</strong> — 系统上线初期，所有新输入经验进入观察期，只作为参考建议不作为主要权重，直到有足够结果验证后才正式提升权重。
+          </p>
+        </div>
+        <div class="debate">
+          <p class="debate-label">待确认事项</p>
+          <p class="debate-content">
+            专家初始名单由谁来定、覆盖哪些领域、初始设定几位——这个需要在立项时明确，不能等系统上线后再讨论，否则版本四上线时知识库权重体系无法正常运转。<br><br>
+            专家权重倍数（×3 还是 ×5）建议在系统运行 1~2 个月后，根据实际投票分布情况动态校准，不宜在上线前就锁定固定值。
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
-
-  <hr class="divider">
 
   <!-- Section 5 -->
   <div class="section" id="s5">
     <div class="section-header">
       <span class="section-num">05</span>
-      <h2 class="section-title">推进路径（四阶段）</h2>
-      <div class="section-line"></div>
+    </div>
+    <h2 class="section-title">资源与成本</h2>
+
+    <p class="prose">人天估算基于现有团队配置：后端开发 × 1、前端开发 × 1。每个版本提供两套方案供参考——<strong>最小方案</strong>以现有工具为主（Claude Code + 数数科技 + Supabase），技术人员主要做集成；<strong>自研方案</strong>更多功能自主开发，灵活性更高但周期更长。工具成本因实际用量而异，MVP 跑通后再评估。</p>
+
+    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v1);margin:28px 0 12px">版本一 · 建立公司认知底座</p>
+    <table class="resource-table">
+      <thead>
+        <tr><th>工作内容</th><th>角色</th><th>最小方案</th><th>自研方案</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>数据源接入</strong><br>Lark / 禅道 / 代码仓库 API 对接，数据清洗管道</td>
+          <td>后端</td><td>10~15 天</td><td>20~25 天</td>
+        </tr>
+        <tr>
+          <td><strong>文档知识库搭建</strong><br>产品功能文档、复盘文档入向量库，语义检索配置</td>
+          <td>后端</td><td>5~8 天</td><td>10~15 天</td>
+        </tr>
+        <tr>
+          <td><strong>隐私过滤规则</strong><br>工作内容识别与个人隐私内容过滤逻辑</td>
+          <td>后端</td><td>3~5 天</td><td>5~8 天</td>
+        </tr>
+        <tr>
+          <td><strong>思维方式文档生成</strong><br>AI 分析历史数据生成初稿，管理层审阅确认流程</td>
+          <td>后端 + 产品</td><td>3~5 天</td><td>5~8 天</td>
+        </tr>
+        <tr>
+          <td><strong>管理界面</strong><br>知识库内容查阅、数据源状态监控的简单后台</td>
+          <td>前端</td><td>5~8 天（Retool）</td><td>10~15 天</td>
+        </tr>
+        <tr style="background:var(--bg3)">
+          <td><strong>版本一合计</strong></td>
+          <td></td>
+          <td><strong>26~41 人天</strong></td>
+          <td><strong>50~71 人天</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v2);margin:28px 0 12px">版本二 · 决策辅助 + 数字孪生</p>
+    <table class="resource-table">
+      <thead>
+        <tr><th>工作内容</th><th>角色</th><th>最小方案</th><th>自研方案</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>数数科技指标体系配置</strong><br>六模块看板搭建，API 接入，异常预警规则</td>
+          <td>后端 + 数据</td><td>8~12 天</td><td>15~20 天</td>
+        </tr>
+        <tr>
+          <td><strong>用户画像体系</strong><br>三层画像（行为/来源/偏好）建模，分群逻辑</td>
+          <td>后端</td><td>10~15 天</td><td>20~25 天</td>
+        </tr>
+        <tr>
+          <td><strong>数字孪生环境</strong><br>虚拟用户生成，游戏场景状态变量，历史校准回测</td>
+          <td>后端</td><td>15~20 天</td><td>30~40 天</td>
+        </tr>
+        <tr>
+          <td><strong>AI 推演引擎</strong><br>产品文档输入解析，规律库检索，预测报告生成</td>
+          <td>后端</td><td>10~15 天</td><td>20~25 天</td>
+        </tr>
+        <tr>
+          <td><strong>运营使用界面</strong><br>文档输入、报告展示、指标看板的使用界面</td>
+          <td>前端</td><td>10~15 天</td><td>20~25 天</td>
+        </tr>
+        <tr style="background:var(--bg3)">
+          <td><strong>版本二合计</strong></td>
+          <td></td>
+          <td><strong>53~77 人天</strong></td>
+          <td><strong>105~135 人天</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v3);margin:28px 0 12px">版本三 · 行业视野与竞品洞察</p>
+    <table class="resource-table">
+      <thead>
+        <tr><th>工作内容</th><th>角色</th><th>最小方案</th><th>自研方案</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>竞品数据采集管道</strong><br>应用商店、官网、新闻资讯的定期抓取和清洗</td>
+          <td>后端</td><td>8~12 天</td><td>15~20 天</td>
+        </tr>
+        <tr>
+          <td><strong>版本考古分析模型</strong><br>时间序列分析，决策逻辑推断，阶段对标逻辑</td>
+          <td>后端</td><td>10~15 天</td><td>20~25 天</td>
+        </tr>
+        <tr>
+          <td><strong>跨行业案例库</strong><br>案例结构化入库，标签体系，语义检索</td>
+          <td>后端</td><td>5~8 天</td><td>10~15 天</td>
+        </tr>
+        <tr>
+          <td><strong>洞察报告界面</strong><br>竞品动态、对标分析、差异化机会的展示界面</td>
+          <td>前端</td><td>8~12 天</td><td>15~20 天</td>
+        </tr>
+        <tr style="background:var(--bg3)">
+          <td><strong>版本三合计</strong></td>
+          <td></td>
+          <td><strong>31~47 人天</strong></td>
+          <td><strong>60~80 人天</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v4);margin:28px 0 12px">版本四 · 群体智慧积累与赋能</p>
+    <table class="resource-table">
+      <thead>
+        <tr><th>工作内容</th><th>角色</th><th>最小方案</th><th>自研方案</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>职业智慧知识库</strong><br>正向经验提取逻辑，适用条件推断，知识库分类体系</td>
+          <td>后端</td><td>10~15 天</td><td>20~25 天</td>
+        </tr>
+        <tr>
+          <td><strong>多人格投票机制</strong><br>虚拟人格生成，方案投票流程，结果排序与展示</td>
+          <td>后端</td><td>8~12 天</td><td>15~20 天</td>
+        </tr>
+        <tr>
+          <td><strong>专家权重体系</strong><br>超级账号管理，专家资格动态调整，防投毒机制</td>
+          <td>后端</td><td>8~12 天</td><td>15~20 天</td>
+        </tr>
+        <tr>
+          <td><strong>文档/代码审查能力</strong><br>员工提交内容的群体审查流程，疏忽识别与提醒</td>
+          <td>后端</td><td>10~15 天</td><td>20~25 天</td>
+        </tr>
+        <tr>
+          <td><strong>员工使用界面</strong><br>审查提交、结果查看、个人成长提醒的使用界面</td>
+          <td>前端</td><td>10~15 天</td><td>20~25 天</td>
+        </tr>
+        <tr style="background:var(--bg3)">
+          <td><strong>版本四合计</strong></td>
+          <td></td>
+          <td><strong>46~69 人天</strong></td>
+          <td><strong>90~115 人天</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="resource-table" style="margin-top:2px">
+      <tbody>
+        <tr style="background:var(--text);color:white">
+          <td style="color:white"><strong>四个版本总计</strong></td>
+          <td style="color:white"></td>
+          <td style="color:white"><strong>156~234 人天</strong></td>
+          <td style="color:white"><strong>305~401 人天</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight" style="margin-top:20px">
+      <p><strong>说明：</strong>以上人天基于后端 × 1、前端 × 1 的配置估算，未含产品设计和测试时间（建议预留 20%）。版本二工作量最大，是整个系统的核心，建议单独立项评估。最小方案优先推荐，工具成本低、交付快，验证核心逻辑后再决定是否转向自研。</p>
     </div>
 
-    <div class="alert alert-blue" style="margin-bottom:20px">核心逻辑：<strong>由内而外</strong> — 先让系统懂我们是谁和怎么思考，再懂我们的工作产出，再懂我们的产品，最后才向外看行业。系统有了公司视角后，给出的建议才是专属于你们处境的精准判断，而不是通用行业建议。</div>
-
-    <!-- Phase 1 -->
-    <div class="phase phase-1" data-num="01" style="margin-bottom:12px">
-      <div class="phase-header">
-        <span class="phase-num-label">阶段 01</span>
-        <span class="phase-title">让系统懂我们</span>
-        <span class="phase-time">4~6 周</span>
-      </div>
-      <p class="phase-goal">目标：建立公司认知底座和思维方式档案。系统在这一步形成"公司人格"，后续所有建议都通过这个视角过滤。这是整个系统的地基，最优先级。</p>
-      <div class="step"><span class="step-n">1</span><span class="step-text"><strong>思想层定义</strong> — 老大输入公司使命愿景价值观、责任博彩边界；老高输入社会层准则。整个系统的判断地基，优先级最高。</span></div>
-      <div class="step"><span class="step-n">2</span><span class="step-text"><strong>组织架构输入</strong> — 人员构成、职责边界、汇报关系、团队分工。建立系统对"这家公司有哪些人、各自负责什么"的基础认知。</span></div>
-      <div class="step"><span class="step-n">3</span><span class="step-text"><strong>精华样本人工筛选</strong> — 你和老板从历史数据中筛选20~30个最能代表公司思维方式的案例：最典型的成功决策、失败复盘、技术方案讨论。质量优先于数量。</span></div>
-      <div class="step"><span class="step-n">4</span><span class="step-text"><strong>数据源接入</strong> — Lark文档/群聊、禅道任务记录、代码仓库、复盘文档接入。系统开始自动摄入增量数据，隐私过滤规则同步启动。</span></div>
-      <div class="step"><span class="step-n">5</span><span class="step-text"><strong>思维方式文档生成</strong> — 系统基于精华样本 + 数据源，自动生成初稿认知文档。你和老板审阅确认后写入思想层。</span></div>
-      <div class="step"><span class="step-n">6</span><span class="step-text"><strong>员工公示</strong> — 透明告知全体员工系统读取哪些内容、过滤哪些内容、用于什么目的。建立信任基础。</span></div>
-      <div class="alert alert-coral" style="margin-top:12px"><strong>最大风险：</strong>思想层定义如果迟迟等不到老大和老高的输入，整个系统启动会被阻塞。建议在本次汇报后给定具体输入截止时间。</div>
-    </div>
-
-    <div class="arrow-connector">↓ 系统已懂公司，开始理解工作产出</div>
-
-    <!-- Phase 2 -->
-    <div class="phase phase-2" data-num="02" style="margin-bottom:12px">
-      <div class="phase-header">
-        <span class="phase-num-label">阶段 02</span>
-        <span class="phase-title">让系统懂我们的工作产出</span>
-        <span class="phase-time">6~8 周</span>
-      </div>
-      <p class="phase-goal">目标：建立职业智慧知识库和多人格协作机制。系统开始理解每个人做了什么、怎么做的，提取正向经验沉淀为集体智慧。</p>
-      <div class="step"><span class="step-n">1</span><span class="step-text"><strong>职业智慧知识库建立</strong> — 按职业分类提取正向经验，自动推断适用条件，建立可跨职业抽象的通用经验层。</span></div>
-      <div class="step"><span class="step-n">2</span><span class="step-text"><strong>虚拟人格初始化</strong> — 基于阶段一数据为每个员工建立虚拟人格底色。个人数据不足时，用同职业群体经验填补，随使用持续修正。</span></div>
-      <div class="step"><span class="step-n">3</span><span class="step-text"><strong>投票协作机制上线</strong> — 多人格方案生成 + 投票排序 + 透明辩论过程查阅。员工可主动提交文档/代码请求群体审查。</span></div>
-      <div class="step"><span class="step-n">4</span><span class="step-text"><strong>员工成长模块</strong> — 透明模式，员工自由选择开启。系统识别个人疏忽规律，在相关任务中针对性提醒。</span></div>
-      <div class="step"><span class="step-n">5</span><span class="step-text"><strong>权限体系建立</strong> — 引用内容可见但受权限控制，对话可分享给上级核实，决策日志自动存档。</span></div>
-      <div class="alert alert-blue" style="margin-top:12px"><strong>阶段二完成标志：</strong>系统能基于公司思维方式 + 员工历史经验，对一份新提交的方案文档给出有针对性的审查意见，而不是通用建议。</div>
-    </div>
-
-    <div class="arrow-connector">↓ 系统已懂人，开始理解产品</div>
-
-    <!-- Phase 3 -->
-    <div class="phase phase-3" data-num="03" style="margin-bottom:12px">
-      <div class="phase-header">
-        <span class="phase-num-label">阶段 03</span>
-        <span class="phase-title">让系统懂我们的产品</span>
-        <span class="phase-time">8~12 周</span>
-      </div>
-      <p class="phase-goal">目标：平台收益决策辅助系统全面上线。系统有了公司视角和团队认知后，再看产品数据，给出的建议才真正有价值。</p>
-      <div class="step"><span class="step-n">1</span><span class="step-text"><strong>功能文档知识库</strong> — 现有产品功能文档整理入向量知识库，AI 理解每个功能的设计意图和用户价值。</span></div>
-      <div class="step"><span class="step-n">2</span><span class="step-text"><strong>数数科技接入</strong> — 六模块指标体系配置上线（收益健康、用户留存、付费转化、游戏行为、渠道代理、活动效果）。</span></div>
-      <div class="step"><span class="step-n">3</span><span class="step-text"><strong>用户画像体系</strong> — 行为层 × 来源层 × 偏好层三层叠加，游戏场景状态变量接入，虚拟用户生成。</span></div>
-      <div class="step"><span class="step-n">4</span><span class="step-text"><strong>AI推演引擎</strong> — Supabase + Claude API 搭建，历史版本节点回测校准，三种使用模式上线（目标导向/方案预判/指标预测）。</span></div>
-      <div class="step"><span class="step-n">5</span><span class="step-text"><strong>前端埋点补充</strong> — 大厅入口点击、活动页停留、推送来源、游戏切换路径，补充前端行为路径数据。</span></div>
-      <div class="alert alert-teal" style="margin-top:12px"><strong>阶段三完成标志：</strong>产品经理提交一份新活动方案文档，系统能结合公司思维方式 + 团队能力 + 历史数据，给出"建议推进/调整/不推进"的有依据结论。</div>
-    </div>
-
-    <div class="arrow-connector">↓ 系统已懂内部，开始向外看</div>
-
-    <!-- Phase 4 -->
-    <div class="phase phase-4" data-num="04">
-      <div class="phase-header">
-        <span class="phase-num-label">阶段 04</span>
-        <span class="phase-title">对外延伸</span>
-        <span class="phase-time">持续迭代</span>
-      </div>
-      <p class="phase-goal">目标：建立行业视野，发现差异化机会。有了前三阶段的公司认知底座，行业对标才能给出真正有针对性的差异化建议。</p>
-      <div class="step"><span class="step-n">1</span><span class="step-text"><strong>竞品追踪情报库</strong> — 重点竞品（5~10个，待补充名单）版本更新持续追踪，推断各阶段决策逻辑。</span></div>
-      <div class="step"><span class="step-n">2</span><span class="step-text"><strong>版本考古分析</strong> — 竞品 + 自身版本记录对比，分析产品前中后期重点方向演变，识别行业规律。</span></div>
-      <div class="step"><span class="step-n">3</span><span class="step-text"><strong>差异化机会识别</strong> — 基于行业对标 + 公司现状，主动发现你们能做而竞品没做的机会点，给出案例依据和理由。</span></div>
-      <div class="step"><span class="step-n">4</span><span class="step-text"><strong>系统持续进化</strong> — 每次真实决策后回测校准，置信度模型持续优化，知识库随使用越来越准。</span></div>
-      <div class="alert alert-blue" style="margin-top:12px"><strong>数据来源：</strong>公开信息（应用商店、官网、新闻、用户评价）+ 行业报告 + 竞品功能变化追踪。不获取竞品私有运营数据，通过公开行为推断策略逻辑。</div>
+    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin:28px 0 12px">工具成本构成</p>
+    <table class="resource-table">
+      <thead>
+        <tr><th>成本项</th><th>说明</th><th>影响因素</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>服务器</strong></td>
+          <td>新加坡/香港节点，从基础配置起步</td>
+          <td>并发用户数、请求频率</td>
+        </tr>
+        <tr>
+          <td><strong>向量数据库</strong></td>
+          <td>文档知识库存储与语义检索</td>
+          <td>文档库大小、查询频率</td>
+        </tr>
+        <tr>
+          <td><strong>AI API</strong></td>
+          <td>核心推演引擎，按调用量计费</td>
+          <td>调用次数、上下文长度、使用人数，变动幅度最大</td>
+        </tr>
+        <tr>
+          <td><strong>现有工具</strong></td>
+          <td>数数科技（已有）、Claude Code（Pro 已包含）</td>
+          <td>无额外采购成本</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="highlight" style="margin-top:12px">
+      <p>工具成本取决于实际使用规模和数据体量，<strong>建议 MVP 阶段跑通后基于真实用量评估，不提前锁定预算。</strong></p>
     </div>
   </div>
-
-  <hr class="divider">
 
   <!-- Section 6 -->
   <div class="section" id="s6">
     <div class="section-header">
       <span class="section-num">06</span>
-      <h2 class="section-title">启动成本估算</h2>
-      <div class="section-line"></div>
     </div>
-    <div class="card">
-      <p class="card-title">MVP 阶段（阶段三完成前）月运营成本</p>
-      <p class="card-sub">阿里云/DigitalOcean 新加坡或香港节点</p>
-      <div class="cost-row"><span class="cost-label">服务器（2核4G · Ubuntu 22.04）</span><span class="cost-val">$20~30 / 月</span></div>
-      <div class="cost-row"><span class="cost-label">Supabase（向量数据库）</span><span class="cost-val">$25 / 月起</span></div>
-      <div class="cost-row"><span class="cost-label">Claude API（推演引擎）</span><span class="cost-val">$50~200 / 月</span></div>
-      <div class="cost-row"><span class="cost-label">Claude Code 开发（Pro 订阅已包含）</span><span class="cost-val">$0 额外费用</span></div>
-      <div class="cost-row"><span class="cost-label">数数科技（已有）</span><span class="cost-val">$0 额外费用</span></div>
-      <div class="cost-row cost-total" style="margin-top:8px;padding-top:12px;border-top:1px solid var(--border2)">
-        <span class="cost-label">月运营成本合计</span>
-        <span class="cost-val">$95~255 / 月</span>
-      </div>
-      <div class="alert alert-green" style="margin-top:12px"><strong>投资回报：</strong>一个中等复杂功能的研发成本通常在数万元以上。系统只需要帮你们避免1~2个无效研发决策，全年成本就已经完全回收。</div>
-    </div>
-  </div>
+    <h2 class="section-title">需要决策的事项</h2>
 
-  <hr class="divider">
+    <p class="prose">以下是启动这个项目需要由管理层明确决策或输入的内容，缺少任何一项都会影响对应版本的启动。</p>
 
-  <!-- Section 7 -->
-  <div class="section" id="s7">
-    <div class="section-header">
-      <span class="section-num">07</span>
-      <h2 class="section-title">待补充的关键内容</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="card">
-      <p class="card-title">汇报后需要推进确认的事项</p>
-      <div class="pending-item">
-        <span class="pending-who pw-boss">老大确认</span>
-        <span class="pending-content">公司使命、愿景、价值观的正式定义。责任博彩的思考路径和边界 — 这是思想层的地基，整个系统的判断标准都基于此，必须由最高层定义。<strong>建议本次汇报后给定输入截止时间。</strong></span>
-      </div>
-      <div class="pending-item">
-        <span class="pending-who pw-gao">老高补充</span>
-        <span class="pending-content">社会层行为准则 — 自然界规律和底层判断逻辑框架。这部分定义了 AI 在行业边界之外的更底层判断依据。</span>
-      </div>
-      <div class="pending-item">
-        <span class="pending-who pw-you">你来推进</span>
-        <span class="pending-content">数数科技账号和 API 信息（拿到后直接写配置文档）。禅道/Lark 数据统一输入渠道确认。组织架构基本情况输入。重点追踪竞品名单（5~10个）。精华样本20~30个案例筛选（与老板一起）。</span>
-      </div>
-      <div class="pending-item">
-        <span class="pending-who pw-later">后续讨论</span>
-        <span class="pending-content">前端行为路径埋点完整方案。多人格冷启动期结构化设计。行业对标数据采集自动化方案。员工使用系统的推广策略。会议纪要文字化规范建立。</span>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- Section 8 -->
-  <div class="section" id="s8">
-    <div class="section-header">
-      <span class="section-num">08</span>
-      <h2 class="section-title">核心建议</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="card">
-      <p class="card-title">汇报时的三个重点</p>
-      <p class="card-sub">预判老板可能的问题和你的应对</p>
-
-      <div class="suggest">
-        <strong>建议一：先做小，快速验证。</strong><br>
-        不要一开始就试图把整个超级个体系统做完。先把平台收益决策辅助系统做出来，证明"AI 能帮我们做出更好的研发决策"这件事是真实的。有了第一个成功案例，后续扩展的内部阻力会小很多，预算也更容易争取。
-      </div>
-
-      <div class="suggest">
-        <strong>建议二：思想层必须在系统上线前定义好。</strong><br>
-        很多公司做 AI 系统，把思想层当成"以后再补充"的事情。但一旦系统上线、员工开始使用，再修改思想层会导致系统行为突然变化，破坏信任。思想层要在第一个模块上线前就写进去，哪怕是粗糙的版本也比没有强。
-      </div>
-
-      <div class="suggest">
-        <strong>建议三：把"陪伴成长"写进团队共识。</strong><br>
-        系统早期会犯错，预测会有偏差。如果团队没有提前建立"系统需要时间成长"的心理预期，第一次重大失误就可能导致系统被放弃。建议在系统上线时向团队说清楚：前3个月是校准期，系统建议作为参考，不作为唯一依据，这段时间的所有预测误差都是在帮系统变得更准。
-      </div>
-
-      <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
-        <p style="font-size:12px;color:var(--text3);margin-bottom:10px">应对老板可能的质疑</p>
-        <div class="row-item">
-          <span class="row-label">vs 直接用ChatGPT</span>
-          <span class="row-value">普通 AI 没有公司记忆，每次从零开始。这个系统持续积累你们公司的数据、经验、判断标准，给出的是专属于你们处境的建议，不是通用答案。</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">可信度问题</span>
-          <span class="row-value">系统的每个结论都基于历史数据，不是黑盒。结论背后有数据依据，可以追溯，可以被质疑。即使预测偏差，可以解释"因为X所以预测Y，但实际是Z，说明Z这个变量之前没考虑到"——这是可接受的偏差。</span>
-        </div>
-        <div class="row-item">
-          <span class="row-label">如果系统判断错了</span>
-          <span class="row-value">每次错误都会被记录和分析，成为系统下一次更准确的依据。系统不是买来即用的工具，是需要陪伴成长的伙伴，错误是成长的代价。</span>
+    <div class="decision-list">
+      <div class="decision-item">
+        <span class="decision-who dw-boss">老大确认</span>
+        <div class="decision-content">
+          <strong>公司使命、愿景、价值观的正式定义</strong><br>
+          这是思想层的地基，整个系统的判断标准都基于此。需要明确：我们存在的意义是什么，想成为什么样的公司，判断一件事好不好的核心标准是什么。
         </div>
       </div>
+      <div class="decision-item">
+        <span class="decision-who dw-boss">老大确认</span>
+        <div class="decision-content">
+          <strong>责任博彩的思考路径和边界</strong><br>
+          系统在给出运营建议时，需要知道哪些方向是不能触碰的红线。这个边界没有定义，系统在追求效果最大化时可能给出不符合公司价值观的建议。
+        </div>
+      </div>
+      <div class="decision-item">
+        <span class="decision-who dw-boss">老大确认</span>
+        <div class="decision-content">
+          <strong>立项批准与人力方向</strong><br>
+          版本一启动需要明确：是从现有团队抽调人手，还是定向招聘，或者以外部工具为主。建议在版本一技术方案确认后给出人力配置决策。
+        </div>
+      </div>
+      <div class="decision-item">
+        <span class="decision-who dw-gao">老高输入</span>
+        <div class="decision-content">
+          <strong>社会层行为准则</strong><br>
+          自然界规律和更底层的判断逻辑框架，定义 AI 在行业边界之外的判断依据。这部分目前是待补充状态。
+        </div>
+      </div>
+      <div class="decision-item">
+        <span class="decision-who dw-you">执行推进</span>
+        <div class="decision-content">
+          <strong>数数科技 API 接入、竞品名单确认、精华样本筛选</strong><br>
+          数数科技账号和 API 权限拿到后即可开始配置指标体系。重点追踪竞品名单（5~10个）需要业务团队确认。精华样本 20~30 个案例需要和老板一起筛选，作为系统初始认知底色。
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top:32px">
+      <p><strong>建议立项后的第一个行动：</strong>在本次汇报结束后，为思想层的定义设定一个具体的截止时间。思想层是版本一的前置条件，它的完成时间直接决定整个系统的启动时间。</p>
     </div>
   </div>
 
   <!-- Footer -->
   <div class="footer">
-    <span>数字化决策大脑 · 拟合超级个体系统 · 内部战略文档</span>
-    <span>框架版本 v1.0</span>
+    <span>数字化决策大脑 · 拟合超级个体系统 · 立项方案</span>
+    <span>v2.0</span>
   </div>
 
 </div>
