@@ -652,7 +652,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
       <strong style="color:var(--v1)">版本一</strong> 建立公司认知底座（组织/工作/产品/数据/价值观）<br>
       <strong style="color:var(--v2)">版本二</strong> 决策辅助 + 策略预判（数字孪生机制）<br>
       <strong style="color:var(--v3)">版本三</strong> 行业视野与竞品洞察（对标分析 + 差异化机会识别）<br>
-      <strong style="color:var(--v4)">版本四</strong> 群体智慧积累与赋能（职业知识库 + 多人格协作）
+      <strong style="color:var(--v4)">版本四</strong> 群体智慧积累与赋能（经验沉淀 + 文档代码审查）
     </p>
     <p style="font-size: 13px; color: var(--text); line-height: 1.9; margin-bottom: 12px; background: #edf7f3; padding: 10px 14px; border-radius: 6px; border-left: 2px solid var(--accent2);">
       <strong>本次立项建议：先批版本一</strong>。版本一是所有后续版本的基础，单独来看就能交付可验证的价值——让系统完整掌握公司的组织、工作、产品、数据和价值观。后续版本根据版本一的实际运行效果再分别决策。
@@ -856,7 +856,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
         <strong>② 历史文档入库达标</strong>：产品功能文档 100% 入向量知识库，近 12 个月的复盘文档、版本发布记录、主要方案文档入库完成。<br>
         <strong>③ 系统能回答基础问题</strong>：能准确回答"我们有哪些产品、各自有什么功能"、"上个季度做了什么项目"、"某个功能为什么这样设计"这类基于公司事实的问题。<br>
         <strong>④ 生成认知文档初稿</strong>：系统输出至少 5 份思维方式初稿文档（面对需求不明确的处理方式、决策收敛模式、延期项目的规律等），经管理层审阅后至少 3 份确认入库。<br>
-        <strong>⑤ 隐私过滤有效性</strong>：过滤日志显示误拦率 &lt; 5%、漏拦率 &lt; 2%（通过人工抽样验证）。对员工反馈的隐私问题能及时响应和调整。
+        <strong>⑤ 隐私过滤有效性</strong>：过滤日志显示误拦率 &lt; 5%、漏拦率 &lt; 2%。<strong>统计口径</strong>：每周人工抽样 200 条过滤日志（含通过/拦截/待审核三类），按分类结果复核计算。对员工反馈的隐私问题能及时响应和调整。
       </p>
     </div>
 
@@ -899,7 +899,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
         </div>
         <div class="module-section">
           <p class="ms-label">用途边界</p>
-          <p class="ms-content"><strong>明确不用于个人绩效评估</strong>。能力地图关注的是团队整体的能力分布和协作模式，不生成单人评分、不作为晋升或奖金依据。系统的目标是让建议更贴近团队实际能力，而不是评判个人。</p>
+          <p class="ms-content"><strong>明确不用于个人绩效评估</strong>。能力地图关注的是团队整体的能力分布和协作模式，<strong>不生成单人评分、不对个人输出排名、不作为晋升或奖金依据</strong>。仅用于系统在给建议时判断"方案是否超出团队能力边界、是否有落地可行性"，目标是让建议更贴近团队实际，而不是评判个人。</p>
         </div>
       </div>
     </div>
@@ -1161,6 +1161,18 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
     <h2 class="section-title">资源与成本</h2>
 
     <p class="prose">人天估算基于现有团队配置：后端开发 × 1、前端开发 × 1。每个版本提供两套方案供参考——<strong>最小方案</strong>以现有工具为主（Claude Code + 数数科技 + Supabase），技术人员主要做集成；<strong>自研方案</strong>更多功能自主开发，灵活性更高但周期更长。工具成本因实际用量而异，MVP 跑通后再评估。</p>
+
+    <div style="background: #edf7f3; border: 1px solid #b8ddd0; border-radius: 10px; padding: 20px 24px; margin: 20px 0 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 240px;">
+        <p style="font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--accent2); margin-bottom: 6px;">本次立项需要</p>
+        <p style="font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 4px;">版本一 · 最小方案</p>
+        <p style="font-size: 12px; color: var(--text2); line-height: 1.6;">首批启动所需资源，基于后端 × 1、前端 × 1 现有团队配置</p>
+      </div>
+      <div style="text-align: right; min-width: 160px;">
+        <p style="font-family: 'Noto Serif SC', serif; font-size: 32px; font-weight: 700; color: var(--accent2); line-height: 1;">26<span style="font-size: 22px; font-weight: 400;">~</span>41</p>
+        <p style="font-size: 11px; color: var(--text3); letter-spacing: .05em; margin-top: 4px;">人天</p>
+      </div>
+    </div>
 
     <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v1);margin:28px 0 12px">版本一 · 建立公司认知底座</p>
     <table class="resource-table">
