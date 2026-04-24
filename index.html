@@ -825,7 +825,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
             <span class="deliver-tag">职业智慧知识库</span>
             <span class="deliver-tag">文档审查能力</span>
             <span class="deliver-tag">代码逻辑检查</span>
-            <span class="deliver-tag">多人格投票机制</span>
+            <span class="deliver-tag">群体审查机制</span>
             <span class="deliver-tag">员工成长提醒</span>
           </div>
         </div>
@@ -856,7 +856,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
         <strong>② 历史文档入库达标</strong>：产品功能文档 100% 入向量知识库，近 12 个月的复盘文档、版本发布记录、主要方案文档入库完成。<br>
         <strong>③ 系统能回答基础问题</strong>：能准确回答"我们有哪些产品、各自有什么功能"、"上个季度做了什么项目"、"某个功能为什么这样设计"这类基于公司事实的问题。<br>
         <strong>④ 生成认知文档初稿</strong>：系统输出至少 5 份思维方式初稿文档（面对需求不明确的处理方式、决策收敛模式、延期项目的规律等），经管理层审阅后至少 3 份确认入库。<br>
-        <strong>⑤ 隐私过滤有效性</strong>：过滤日志显示误拦率 &lt; 5%、漏拦率 &lt; 2%。<strong>统计口径</strong>：每周人工抽样 200 条过滤日志（含通过/拦截/待审核三类），按分类结果复核计算。对员工反馈的隐私问题能及时响应和调整。
+        <strong>⑤ 隐私过滤有效性</strong>：<strong>首月目标</strong>——建立基线，误拦率 &lt; 10%、漏拦率 &lt; 5%，完成规则迭代；<strong>稳定期目标（3 个月后）</strong>——误拦率 &lt; 5%、漏拦率 &lt; 2%。<strong>统计口径</strong>：每周人工抽样 200 条过滤日志（含通过/拦截/待审核三类），按分类结果复核计算。对员工反馈的隐私问题能及时响应和调整。
+      </p>
+    </div>
+
+    <div style="background: #eef3f9; border: 1px solid #b8cfe4; border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin-bottom: 24px;">
+      <p style="font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">立项后 30 天交付物</p>
+      <p style="font-size: 13px; color: var(--text); line-height: 1.9; margin-bottom: 8px;">
+        30 天内完成以下 5 项，让老板和团队能看到实际进展，不是空口承诺：
+      </p>
+      <p style="font-size: 13px; color: var(--text2); line-height: 1.9;">
+        <strong>① 数据源权限全部申请完成</strong>：Lark 企业自建应用审批通过、禅道 API token 开通、代码仓库访问权限配置、数数科技 Open API 接入。<br>
+        <strong>② 首批历史文档入库</strong>：产品功能文档 + 近 3 个月复盘文档完成向量化入库，知识库最小可用。<br>
+        <strong>③ 知识库查询 Demo</strong>：后台可以通过自然语言查询已入库内容，返回相关段落。管理层可现场体验。<br>
+        <strong>④ 隐私过滤规则 1.0</strong>：三层过滤架构上线，首版关键词规则完成，开始收集过滤日志。<br>
+        <strong>⑤ V1 管理后台初版</strong>：数据源状态看板 + 知识库浏览界面可用，支持观察同步情况。
       </p>
     </div>
 
@@ -895,7 +909,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
         </div>
         <div class="module-section">
           <p class="ms-label">团队能力地图</p>
-          <p class="ms-content">基于日报周报、代码提交记录、功能完成情况，了解团队在不同领域的能力分布——哪些方向人手充足、哪些方向是瓶颈、跨职能协作的效率如何。这份地图帮助系统在给建议时知道"什么方案能落地、什么方案超出团队能力边界"，随数据积累持续修正。</p>
+          <p class="ms-content">基于日报周报、代码提交记录、功能完成情况，了解团队在不同领域的能力分布——哪些方向人手充足、哪些方向是瓶颈、跨职能协作的效率如何。这份地图帮助系统在给建议时知道"什么方案能落地、什么方案超出团队能力边界"，随数据积累持续修正。<br><br><strong>默认只分析团队级趋势，不展示个人级明细</strong>。如需个人级分析（比如辅助某个员工成长），必须由当事人本人授权开启，系统不做默认采集。</p>
         </div>
         <div class="module-section">
           <p class="ms-label">用途边界</p>
@@ -1071,19 +1085,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
       </div>
       <div class="module-body">
         <div class="module-section">
-          <p class="ms-label">框架设计</p>
-          <p class="ms-content">每个员工对应一个虚拟角色，系统从其历史工作产出中提取<strong>正向经验</strong>（方案考虑更全面、代码效率更高，且被他人采纳验证）沉淀为职业知识库。不是仿真员工的思维方式，而是提取可复用的思维模式和最优解。员工离职后经验留存，成为公司的集体资产。</p>
+          <p class="ms-label">核心能力</p>
+          <p class="ms-content">系统从员工的历史工作产出中提取<strong>正向经验</strong>（方案考虑更全面、代码效率更高，且被他人采纳验证）沉淀为职业知识库。员工主动提交文档或代码时，系统基于积累的集体智慧进行审查，补充个人视角可能遗漏的角度，用群体经验提升个体水平。员工离职后经验留存，成为公司的集体资产。</p>
         </div>
         <div class="module-section">
-          <p class="ms-label">为什么用多人格而不是单一 AI</p>
-          <p class="ms-content">
-            单一 AI 模型在面对复杂问题时，倾向于给出<strong>平均化的建议</strong>——考虑所有因素、兼顾所有立场、最终输出一个"没有错但也没有亮点"的方案。这对日常问题够用，但对真正需要创新或突破的决策价值有限。<br><br>
-            多人格的设计是让<strong>不同背景、不同专长的虚拟角色独立思考同一个问题</strong>，然后通过投票机制呈现分歧。这样不仅给出共识，还能暴露被单一视角忽略的角度。举例：一个活动方案，产品人格可能关注用户体验，数据人格会质疑转化预期，风控人格会提示合规风险——这些不同视角在单一 AI 里会被折中掉，但在多人格里会被完整保留。
-          </p>
-        </div>
-        <div class="module-section">
-          <p class="ms-label">多人格投票机制</p>
-          <p class="ms-content">当员工提交文档或方案请求审查时，系统触发多个虚拟人格各自提出改进建议，所有人格对所有方案进行投票（含自己的方案），按票数排序展示。默认看综合最优解，需要时可展开查看每个方案的票数和理由。设计成"只投支持不投反对"——避免人格之间陷入无意义的对抗，每个人格都专注于"我推荐哪个方案"。</p>
+          <p class="ms-label">群体智慧的组织方式</p>
+          <p class="ms-content">系统调用不同职业背景的经验独立思考同一问题，然后呈现多个角度的建议供使用者参考。举例：一份活动方案审查，系统会同时从产品视角（用户体验）、数据视角（转化预期）、风控视角（合规风险）给出反馈——这些视角在单一 AI 里会被折中掉，但在分角色思考下会被完整保留。<strong>具体的投票与排序机制属于 V4 启动前再细化的实现细节</strong>，会基于前三个版本积累的数据量来决定。</p>
         </div>
         <div class="module-section">
           <p class="ms-label">员工成长机制</p>
@@ -1286,7 +1293,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
           <td>后端</td><td>10~15 天</td><td>20~25 天</td>
         </tr>
         <tr>
-          <td><strong>多人格投票机制</strong><br>虚拟人格生成，方案投票流程，结果排序与展示</td>
+          <td><strong>群体审查机制</strong><br>多视角方案生成，结果呈现与对比</td>
           <td>后端</td><td>8~12 天</td><td>15~20 天</td>
         </tr>
         <tr>
@@ -1448,6 +1455,23 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
         <div class="module-section">
           <p class="ms-label">应对方式</p>
           <p class="ms-content">系统架构设计时<strong>保持认知底座和业务数据的解耦</strong>。思想层和工作方式层可以跨业务复用，产品数据和竞品情报可以按业务线划分。新业务启动时增量扩展，不需要推翻重建。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">R6</span>
+        <span class="module-title">数据权限与系统审批延迟</span>
+      </div>
+      <div class="module-body">
+        <div class="module-section">
+          <p class="ms-label">风险描述</p>
+          <p class="ms-content">版本一依赖多个系统的权限接入：<strong>Lark 企业自建应用</strong>（审批周期 1~2 周）、<strong>禅道 API token</strong>（需 IT 配合开通）、<strong>代码仓库访问权限</strong>（需仓库管理员授权）、<strong>数数科技 Open API</strong>（需获取账号权限）。任何一个环节卡住，都会直接影响启动节奏——开发人员无事可做，项目进度拖延。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">应对方式</p>
+          <p class="ms-content"><strong>立项批准当天即启动权限申请流程</strong>，不等开发阶段再处理。由项目负责人统一跟进各系统的审批进度，每周同步状态给管理层。同时准备<strong>降级方案</strong>——如果某个数据源短期无法接入，优先用其他数据源先跑起来，待权限到位后再接入。</p>
         </div>
       </div>
     </div>
