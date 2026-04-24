@@ -649,18 +649,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
       打造一个<strong>与公司共同成长的 AI 决策伙伴</strong>，分四个版本递进建设：
     </p>
     <p style="font-size: 13px; color: var(--text2); line-height: 1.9; margin-bottom: 12px;">
-      <strong style="color:var(--v1)">版本一</strong> 建立公司认知底座（组织/人力/工作/产品/数据/价值观）<br>
-      <strong style="color:var(--v2)">版本二</strong> 决策辅助 + 数字孪生（业务监控 + 策略效果预判）<br>
+      <strong style="color:var(--v1)">版本一</strong> 建立公司认知底座（组织/工作/产品/数据/价值观）<br>
+      <strong style="color:var(--v2)">版本二</strong> 决策辅助 + 策略预判（数字孪生机制）<br>
       <strong style="color:var(--v3)">版本三</strong> 行业视野与竞品洞察（对标分析 + 差异化机会识别）<br>
       <strong style="color:var(--v4)">版本四</strong> 群体智慧积累与赋能（职业知识库 + 多人格协作）
     </p>
+    <p style="font-size: 13px; color: var(--text); line-height: 1.9; margin-bottom: 12px; background: #edf7f3; padding: 10px 14px; border-radius: 6px; border-left: 2px solid var(--accent2);">
+      <strong>本次立项建议：先批版本一</strong>。版本一是所有后续版本的基础，单独来看就能交付可验证的价值——让系统完整掌握公司的组织、工作、产品、数据和价值观。后续版本根据版本一的实际运行效果再分别决策。
+    </p>
     <p style="font-size: 13px; color: var(--text2); line-height: 1.9; margin-bottom: 12px;">
-      <strong>预计人天</strong>：最小方案 156~234 人天 / 自研方案 305~401 人天（基于后端 × 1 + 前端 × 1 的团队配置）<br>
-      <strong>工具成本</strong>：随用量浮动，MVP 跑通后基于真实用量评估<br>
-      <strong>关键路径</strong>：版本一是所有后续版本的前置依赖。版本二、三可并行，版本四依赖前三版本稳定运行 3~6 个月后启动
+      <strong>关键路径</strong>：版本一是所有后续版本的前置依赖。版本二、三可并行，版本四依赖前三版本稳定运行 3~6 个月后启动。<br>
+      <strong>思想层并行推进</strong>：价值观与行为准则的定义与版本一开发并行，不互相阻塞。数据底座的工作可以先启动，思想层 1.0 完成后再对接过滤层。<br>
+      <strong>人天与工具成本</strong>：详见第 05 章「资源与成本」。基于现有后端 × 1、前端 × 1 团队配置估算，提供最小方案和自研方案两套选项。
     </p>
     <p style="font-size: 13px; color: var(--text2); line-height: 1.9;">
-      <strong>需要立即决策</strong>：思想层定义（公司使命愿景 + 责任博彩边界 + 社会层准则）——这是整个系统的硬前置条件，未完成则版本一无法启动。
+      <strong>需要管理层决策</strong>：批准版本一立项，约定思想层 1.0 的输入节奏（不作为启动前置，但需要在版本一运行中逐步完成）。
     </p>
   </div>
 
@@ -723,7 +726,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
       </div>
       <div class="cap-item">
         <p class="cap-label" style="color:var(--v2)">版本二核心</p>
-        <p class="cap-title">决策辅助 + 数字孪生</p>
+        <p class="cap-title">决策辅助 + 策略预判</p>
         <p class="cap-body">监控业务指标，模拟用户和游戏环境，对新策略做上线前的效果预判。</p>
       </div>
       <div class="cap-item">
@@ -748,9 +751,9 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
     </div>
     <h2 class="section-title">版本规划总览</h2>
 
-    <div style="background: #fdf0ee; border-left: 2px solid var(--coral); border-radius: 0 8px 8px 0; padding: 12px 18px; margin-bottom: 24px; font-size: 13px; color: var(--text); line-height: 1.7;">
-      <strong style="color: var(--coral); letter-spacing: .08em; font-size: 11px; text-transform: uppercase;">依赖关系</strong><br>
-      版本一是所有后续版本的<strong>硬前置依赖</strong>，必须先完成。版本二和版本三可以<strong>并行推进</strong>——一条向内看（自己的数据和模拟），一条向外看（市场和竞品）。版本四依赖前三个版本的数据积累，建议在版本二、三稳定运行 3~6 个月后启动。
+    <div style="background: #edf7f3; border-left: 2px solid var(--accent2); border-radius: 0 8px 8px 0; padding: 12px 18px; margin-bottom: 24px; font-size: 13px; color: var(--text); line-height: 1.7;">
+      <strong style="color: var(--accent2); letter-spacing: .08em; font-size: 11px; text-transform: uppercase;">依赖关系</strong><br>
+      版本一是所有后续版本的基础。思想层的定义与版本一技术开发<strong>并行推进，不互相阻塞</strong>。版本二和版本三可以<strong>并行开发</strong>——一条向内看（自己的数据和模拟），一条向外看（市场和竞品）。版本四依赖前三个版本的数据积累，建议在版本二、三稳定运行 3~6 个月后启动。
     </div>
 
     <div class="version-timeline">
@@ -761,11 +764,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
           <span class="version-dot v1-dot"></span>
         </div>
         <div class="version-body">
-          <p class="version-title">建立公司认知底座 <span style="font-size:10px;font-weight:500;color:var(--coral);background:#fdf0ee;padding:2px 7px;border-radius:3px;margin-left:6px;letter-spacing:.05em">前置条件</span></p>
+          <p class="version-title">建立公司认知底座 <span style="font-size:10px;font-weight:500;color:var(--v1);background:#eef3f9;padding:2px 7px;border-radius:3px;margin-left:6px;letter-spacing:.05em">地基版本</span></p>
           <p class="version-goal">版本一结束时，系统需要完整掌握以下六个维度的公司信息，每一项都可以被检验。这是所有后续版本的基础，必须先完成。</p>
           <div class="version-delivers">
             <span class="deliver-tag">组织架构</span>
-            <span class="deliver-tag">人力安排</span>
+            <span class="deliver-tag">团队能力地图</span>
             <span class="deliver-tag">工作内容</span>
             <span class="deliver-tag">产品现状</span>
             <span class="deliver-tag">产品数据</span>
@@ -781,12 +784,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
           <span class="version-dot v2-dot"></span>
         </div>
         <div class="version-body">
-          <p class="version-title">决策辅助 + 数字孪生 <span style="font-size:10px;font-weight:500;color:var(--v2);background:#edf7f3;padding:2px 7px;border-radius:3px;margin-left:6px;letter-spacing:.05em">可与版本三并行</span></p>
-          <p class="version-goal">基于版本一的认知底座，系统开始监控业务核心指标，构建数字孪生环境，模拟用户行为和游戏场景。对新的运营策略在上线前进行效果预判，让决策从"上线后才知道"变成"上线前已预测"。</p>
+          <p class="version-title">决策辅助 + 策略预判 <span style="font-size:10px;font-weight:500;color:var(--v2);background:#edf7f3;padding:2px 7px;border-radius:3px;margin-left:6px;letter-spacing:.05em">可与版本三并行</span></p>
+          <p class="version-goal">基于版本一的认知底座，系统开始监控业务核心指标，构建虚拟用户和游戏环境（数字孪生机制），模拟真实场景下新策略的效果。让决策从"上线后才知道"变成"上线前已预测"。</p>
           <div class="version-delivers">
             <span class="deliver-tag">核心指标监控看板</span>
             <span class="deliver-tag">用户画像体系</span>
-            <span class="deliver-tag">数字孪生环境</span>
+            <span class="deliver-tag">策略预判引擎</span>
             <span class="deliver-tag">策略效果预判</span>
             <span class="deliver-tag">异常预警机制</span>
           </div>
@@ -843,10 +846,24 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
     <!-- V1 Modules -->
     <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v1);margin-bottom:12px">版本一模块：建立公司认知底座</p>
 
+    <div style="background: #edf7f3; border: 1px solid #b8ddd0; border-left: 3px solid var(--accent2); border-radius: 0 8px 8px 0; padding: 16px 20px; margin-bottom: 16px;">
+      <p style="font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--accent2); margin-bottom: 10px;">版本一验收标准</p>
+      <p style="font-size: 13px; color: var(--text); line-height: 1.9; margin-bottom: 8px;">
+        完成以下 5 项即视为版本一达标，具备进入版本二的基础条件：
+      </p>
+      <p style="font-size: 13px; color: var(--text2); line-height: 1.9;">
+        <strong>① 数据源接入完成</strong>：Lark 工作文档 + 禅道任务记录 + 代码仓库 + 产品功能文档四类数据源完成接入并稳定同步，每日新增数据量可监控。<br>
+        <strong>② 历史文档入库达标</strong>：产品功能文档 100% 入向量知识库，近 12 个月的复盘文档、版本发布记录、主要方案文档入库完成。<br>
+        <strong>③ 系统能回答基础问题</strong>：能准确回答"我们有哪些产品、各自有什么功能"、"上个季度做了什么项目"、"某个功能为什么这样设计"这类基于公司事实的问题。<br>
+        <strong>④ 生成认知文档初稿</strong>：系统输出至少 5 份思维方式初稿文档（面对需求不明确的处理方式、决策收敛模式、延期项目的规律等），经管理层审阅后至少 3 份确认入库。<br>
+        <strong>⑤ 隐私过滤有效性</strong>：过滤日志显示误拦率 &lt; 5%、漏拦率 &lt; 2%（通过人工抽样验证）。对员工反馈的隐私问题能及时响应和调整。
+      </p>
+    </div>
+
     <div class="module">
       <div class="module-header">
         <span class="module-num">1.0</span>
-        <span class="module-title">思想层 — 价值观与行为准则 <span style="font-size:10px;font-weight:500;color:var(--coral);background:#fdf0ee;padding:2px 7px;border-radius:3px;margin-left:6px">前置条件</span></span>
+        <span class="module-title">思想层 — 价值观与行为准则 <span style="font-size:10px;font-weight:500;color:var(--v2);background:#edf7f3;padding:2px 7px;border-radius:3px;margin-left:6px">与版本一并行</span></span>
         <span class="module-version v1-tag">版本一</span>
       </div>
       <div class="module-body">
@@ -859,8 +876,8 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
           <p class="ms-content">由公司管理层主动定义，以自然语言文档形式输入。系统在每次给出建议时，会先用思想层内容过滤——确保建议符合公司价值观和合规边界，再输出结论。</p>
         </div>
         <div class="pending">
-          <p class="pending-label">启动前提</p>
-          <p class="pending-content">这是整个系统启动的<strong>硬前置条件</strong>。思想层没有定义，版本一无法启动，后续版本全部受阻。需要管理层在开发启动前完成以下内容的正式定义：公司使命愿景价值观、责任博彩的思考路径和红线、社会层判断逻辑框架。建议立项后立刻约定输入截止时间。</p>
+          <p class="pending-label">推进节奏</p>
+          <p class="pending-content">思想层的定义<strong>与版本一开发并行推进，不互相阻塞</strong>。数据底座、文档接入、能力地图等工作可以先启动。思想层 1.0 完成后再对接过滤层即可——先有粗略的 1.0 版本让系统启动，后续迭代细化，避免追求完美导致无限拖延。需要外部输入的内容：公司使命愿景价值观、责任博彩的思考路径和红线、社会层判断逻辑框架。</p>
         </div>
       </div>
     </div>
@@ -868,7 +885,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
     <div class="module">
       <div class="module-header">
         <span class="module-num">1.1</span>
-        <span class="module-title">组织架构与人力画像</span>
+        <span class="module-title">组织架构与团队能力地图</span>
         <span class="module-version v1-tag">版本一</span>
       </div>
       <div class="module-body">
@@ -877,8 +894,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
           <p class="ms-content">建立公司组织的完整认知：整体架构图谱、各部门职责划分、人员构成、汇报关系、各角色的核心工作内容和产出标准。这是系统理解"公司里有哪些人、分别负责什么"的基础。</p>
         </div>
         <div class="module-section">
-          <p class="ms-label">人力画像构建</p>
-          <p class="ms-content">基于日报周报、代码提交记录、功能完成情况，量化评估每个成员的能力边界和产出水平。系统通过多源交叉验证识别每个人擅长的领域、当前产能、以及团队整体瓶颈点。画像随数据积累持续修正，不是一次性静态评估。</p>
+          <p class="ms-label">团队能力地图</p>
+          <p class="ms-content">基于日报周报、代码提交记录、功能完成情况，了解团队在不同领域的能力分布——哪些方向人手充足、哪些方向是瓶颈、跨职能协作的效率如何。这份地图帮助系统在给建议时知道"什么方案能落地、什么方案超出团队能力边界"，随数据积累持续修正。</p>
+        </div>
+        <div class="module-section">
+          <p class="ms-label">用途边界</p>
+          <p class="ms-content"><strong>明确不用于个人绩效评估</strong>。能力地图关注的是团队整体的能力分布和协作模式，不生成单人评分、不作为晋升或奖金依据。系统的目标是让建议更贴近团队实际能力，而不是评判个人。</p>
         </div>
       </div>
     </div>
@@ -964,7 +985,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
     </div>
 
     <!-- V2 Modules -->
-    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v2);margin:32px 0 12px">版本二模块：决策辅助 + 数字孪生</p>
+    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v2);margin:32px 0 12px">版本二模块：决策辅助 + 策略预判</p>
 
     <div class="module">
       <div class="module-header">
@@ -987,7 +1008,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
     <div class="module">
       <div class="module-header">
         <span class="module-num">2.2</span>
-        <span class="module-title">数字孪生 + 策略效果预判</span>
+        <span class="module-title">策略效果预判引擎（数字孪生机制）</span>
         <span class="module-version v2-tag">版本二</span>
       </div>
       <div class="module-body">
@@ -1176,7 +1197,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
       </tbody>
     </table>
 
-    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v2);margin:28px 0 12px">版本二 · 决策辅助 + 数字孪生</p>
+    <p style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--v2);margin:28px 0 12px">版本二 · 决策辅助 + 策略预判</p>
     <table class="resource-table">
       <thead>
         <tr><th>工作内容</th><th>角色</th><th>最小方案</th><th>自研方案</th></tr>
@@ -1191,7 +1212,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
           <td>后端</td><td>10~15 天</td><td>20~25 天</td>
         </tr>
         <tr>
-          <td><strong>数字孪生环境</strong><br>虚拟用户生成，游戏场景状态变量，历史校准回测</td>
+          <td><strong>策略预判引擎</strong><br>虚拟用户生成，游戏场景状态变量，历史校准回测</td>
           <td>后端</td><td>15~20 天</td><td>30~40 天</td>
         </tr>
         <tr>
@@ -1393,7 +1414,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
       <div class="module-body">
         <div class="module-section">
           <p class="ms-label">风险描述</p>
-          <p class="ms-content">思想层是版本一的硬前置条件，需要管理层投入时间正式定义。如果这项工作被其他优先级挤压，整个项目启动会被无限延期。</p>
+          <p class="ms-content">思想层需要管理层投入时间正式定义。如果这项工作被其他优先级挤压，系统在面对模糊决策时可能出现判断漂移，无法严格按照公司价值观输出建议。</p>
         </div>
         <div class="module-section">
           <p class="ms-label">应对方式</p>
@@ -1469,7 +1490,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
     </div>
 
     <div class="highlight" style="margin-top:32px">
-      <p><strong>建议立项后的第一个行动：</strong>在本次汇报结束后，为思想层的定义设定一个具体的截止时间。思想层是版本一的前置条件，它的完成时间直接决定整个系统的启动时间。</p>
+      <p><strong>建议立项后的第一个行动：</strong>版本一开发与思想层输入同时启动。数据接入、知识库、能力地图等工作由技术团队推进；思想层 1.0 由管理层在版本一运行期内逐步完成。两条路径并行推进，各自按节奏交付。</p>
     </div>
   </div>
 
