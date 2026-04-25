@@ -1485,48 +1485,102 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
     </div>
     <h2 class="section-title">需要决策的事项</h2>
 
-    <p class="prose">以下是启动这个项目需要由管理层明确决策或输入的内容，缺少任何一项都会影响对应版本的启动。</p>
+    <p class="prose">以下是本次汇报需要当场拍板的事项。每一条都已经明确责任人和交付节点，便于立项后直接推进，不留模糊空间。</p>
 
-    <div class="decision-list">
-      <div class="decision-item">
-        <span class="decision-who dw-boss">外部输入</span>
-        <div class="decision-content">
-          <strong>公司使命、愿景、价值观的正式定义</strong><br>
-          这是思想层的地基，整个系统的判断标准都基于此。需要明确：我们存在的意义是什么，想成为什么样的公司，判断一件事好不好的核心标准是什么。
-        </div>
+    <style>
+    .approval-item { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 18px 22px; margin-bottom: 10px; }
+    .approval-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+    .approval-num { font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--text3); background: var(--bg3); padding: 2px 8px; border-radius: 3px; }
+    .approval-title { font-size: 14px; font-weight: 500; color: var(--text); flex: 1; min-width: 200px; }
+    .approval-badge { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 3px; letter-spacing: .05em; }
+    .badge-approval { background: #fdf0ee; color: var(--coral); }
+    .badge-input { background: #eef3f9; color: var(--accent); }
+    .badge-action { background: #edf7f3; color: var(--accent2); }
+    .approval-meta { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 12px; color: var(--text2); line-height: 1.7; margin-top: 8px; }
+    .approval-meta .ml { color: var(--text3); font-weight: 500; letter-spacing: .05em; }
+    .approval-meta .mv { color: var(--text); }
+    .approval-note { font-size: 12px; color: var(--text2); line-height: 1.7; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); }
+    </style>
+
+    <!-- D1 -->
+    <div class="approval-item">
+      <div class="approval-head">
+        <span class="approval-num">D1</span>
+        <span class="approval-title">批准版本一立项</span>
+        <span class="approval-badge badge-approval">当场拍板</span>
       </div>
-      <div class="decision-item">
-        <span class="decision-who dw-boss">外部输入</span>
-        <div class="decision-content">
-          <strong>责任博彩的思考路径和边界</strong><br>
-          系统在给出运营建议时，需要知道哪些方向是不能触碰的红线。这个边界没有定义，系统在追求效果最大化时可能给出不符合公司价值观的建议。
-        </div>
+      <div class="approval-meta">
+        <span class="ml">决策内容</span><span class="mv">是否批准启动版本一"建立公司认知底座"的开发工作</span>
+        <span class="ml">决策人</span><span class="mv">老板</span>
+        <span class="ml">所需投入</span><span class="mv">后端 × 1 + 前端 × 1 现有团队，最小方案 26~41 人天</span>
+        <span class="ml">预期交付</span><span class="mv">立项后 30 天看到初版成果（详见 V1 验收标准 + 30 天交付物）</span>
       </div>
-      <div class="decision-item">
-        <span class="decision-who dw-boss">外部输入</span>
-        <div class="decision-content">
-          <strong>社会层行为准则</strong><br>
-          自然界规律和更底层的判断逻辑框架，定义 AI 在行业边界之外的判断依据。这部分目前是待补充状态。
-        </div>
+      <p class="approval-note">版本二、三、四先不批准，根据版本一实际运行效果再逐个决策。</p>
+    </div>
+
+    <!-- D2 -->
+    <div class="approval-item">
+      <div class="approval-head">
+        <span class="approval-num">D2</span>
+        <span class="approval-title">指定思想层 1.0 的输入责任方</span>
+        <span class="approval-badge badge-input">外部输入</span>
       </div>
-      <div class="decision-item">
-        <span class="decision-who dw-gao">管理层决策</span>
-        <div class="decision-content">
-          <strong>立项批准与人力方向</strong><br>
-          版本一启动需要明确：是从现有团队抽调人手，还是定向招聘，或者以外部工具为主。建议在版本一技术方案确认后给出人力配置决策。
-        </div>
+      <div class="approval-meta">
+        <span class="ml">交付内容</span><span class="mv">公司使命愿景价值观 + 责任博彩边界 + 社会层判断框架</span>
+        <span class="ml">建议责任方</span><span class="mv">老板 + 战略发展部门</span>
+        <span class="ml">交付时间</span><span class="mv">不晚于系统测试验收前 1 周（约立项后 2~2.5 个月）</span>
+        <span class="ml">交付形式</span><span class="mv">结构化文档（先粗略 1.0 版本，后续版本迭代细化）</span>
       </div>
-      <div class="decision-item">
-        <span class="decision-who dw-you">执行推进</span>
-        <div class="decision-content">
-          <strong>数数科技 API 接入、竞品名单确认、精华样本筛选</strong><br>
-          数数科技账号和 API 权限拿到后即可开始配置指标体系。重点追踪竞品名单（5~10个）需要业务团队确认。精华样本 20~30 个案例需要和老板一起筛选，作为系统初始认知底色。
-        </div>
+      <p class="approval-note">与版本一开发并行推进，不阻塞数据接入、知识库等技术工作。但必须在系统验收前到位，否则思想层过滤无法对接。</p>
+    </div>
+
+    <!-- D3 -->
+    <div class="approval-item">
+      <div class="approval-head">
+        <span class="approval-num">D3</span>
+        <span class="approval-title">确认项目负责人与权限协调人</span>
+        <span class="approval-badge badge-approval">当场拍板</span>
+      </div>
+      <div class="approval-meta">
+        <span class="ml">角色职责</span><span class="mv">统筹开发进度、协调各系统权限申请、对接管理层、每周同步状态</span>
+        <span class="ml">建议人选</span><span class="mv">本次汇报人（即我）</span>
+        <span class="ml">需授权事项</span><span class="mv">代表项目向 IT、各业务线、外部厂商发起权限申请和协调</span>
+      </div>
+      <p class="approval-note">老板作为最终决策人保留拍板权，日常推进由项目负责人处理，不增加老板日常工作负担。</p>
+    </div>
+
+    <!-- D4 -->
+    <div class="approval-item">
+      <div class="approval-head">
+        <span class="approval-num">D4</span>
+        <span class="approval-title">批准权限申请立即启动</span>
+        <span class="approval-badge badge-action">立项后即执行</span>
+      </div>
+      <div class="approval-meta">
+        <span class="ml">需申请权限</span><span class="mv">Lark 企业自建应用 · 禅道 API · 代码仓库访问 · 数数科技 Open API</span>
+        <span class="ml">执行人</span><span class="mv">项目负责人</span>
+        <span class="ml">启动时间</span><span class="mv">立项当天</span>
+        <span class="ml">预计完成</span><span class="mv">2~3 周内全部到位（Lark 审批周期最长，其他并行推进）</span>
+      </div>
+      <p class="approval-note">这是 R6 风险的具体应对动作。任何一个权限卡住都会拖慢启动节奏，需要立项当天就启动申请。</p>
+    </div>
+
+    <!-- D5 -->
+    <div class="approval-item">
+      <div class="approval-head">
+        <span class="approval-num">D5</span>
+        <span class="approval-title">精华样本筛选与竞品名单确认</span>
+        <span class="approval-badge badge-action">立项后 2 周内</span>
+      </div>
+      <div class="approval-meta">
+        <span class="ml">交付内容</span><span class="mv">20~30 个代表性历史案例 + 5~10 个重点追踪竞品名单</span>
+        <span class="ml">执行人</span><span class="mv">项目负责人 + 老板共同筛选</span>
+        <span class="ml">用途</span><span class="mv">精华样本作为系统初始认知底色；竞品名单为后续 V3 做准备</span>
       </div>
     </div>
 
     <div class="highlight" style="margin-top:32px">
-      <p><strong>建议立项后的第一个行动：</strong>版本一开发与思想层输入同时启动。数据接入、知识库、能力地图等工作由技术团队推进；思想层 1.0 由管理层在版本一运行期内逐步完成。两条路径并行推进，各自按节奏交付。</p>
+      <p><strong>建议立项后的第一个行动：</strong>版本一开发与思想层输入同时启动。数据接入、知识库、能力地图等工作由技术团队推进；思想层 1.0 由老板和战略发展部门在版本一运行期内逐步完成。两条路径并行推进，各自按节奏交付。</p>
     </div>
   </div>
 
