@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数字化决策大脑 · 技术方案细节</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f6f3;
+  --bg2: #ffffff;
+  --bg3: #f0ede8;
+  --border: #e5e0d8;
+  --border2: #d4cec4;
+  --text: #1a1814;
+  --text2: #5a5650;
+  --text3: #9a9490;
+  --accent: #2d5a8e;
+  --accent2: #1a7a5e;
+  --gold: #b8860b;
+  --coral: #c0392b;
+  --purple: #6b4c9a;
+  --v1: #2d5a8e;
+  --v2: #1a7a5e;
+  --v3: #8e4a2d;
+  --v4: #6b4c9a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+/* Layout */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px 100px;
+}
+
+/* Cover */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--border2);
+  margin-bottom: 80px;
+}
+
+.cover-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 32px;
+}
+
+.cover h1 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 52px;
+  font-weight: 300;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 32px;
+  letter-spacing: -.02em;
+}
+
+.cover h1 strong {
+  font-weight: 700;
+  display: block;
+}
+
+.cover-desc {
+  font-size: 16px;
+  color: var(--text2);
+  max-width: 520px;
+  line-height: 1.9;
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+
+.cover-tags {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cover-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  color: var(--text2);
+  letter-spacing: .05em;
+}
+
+/* TOC */
+.toc {
+  margin-bottom: 80px;
+  padding: 32px 0;
+  border-top: 2px solid var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+.toc-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 20px;
+}
+
+.toc-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 40px;
+}
+
+.toc-list li a {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 5px 0;
+  border-bottom: 1px solid transparent;
+  transition: all .15s;
+}
+
+.toc-list li a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.toc-num {
+  font-size: 10px;
+  color: var(--text3);
+  min-width: 20px;
+}
+
+/* Section */
+.section {
+  margin-bottom: 80px;
+}
+
+.section-header {
+  border-top: 2px solid var(--text);
+  padding-top: 20px;
+  margin-bottom: 36px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.section-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 6px;
+}
+
+/* Prose */
+.prose {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.9;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.prose strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Highlight block */
+.highlight {
+  border-left: 3px solid var(--text);
+  padding: 16px 20px;
+  margin: 24px 0;
+  background: var(--bg2);
+}
+
+.highlight p {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.highlight strong {
+  font-weight: 600;
+}
+
+/* Capability grid */
+.cap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  margin: 24px 0;
+}
+
+.cap-item {
+  background: var(--bg2);
+  padding: 20px;
+}
+
+.cap-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 10px;
+}
+
+.cap-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.cap-body {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Version timeline */
+.version-timeline {
+  margin: 32px 0;
+}
+
+.version-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0;
+  margin-bottom: 2px;
+}
+
+.version-sidebar {
+  padding: 24px 20px 24px 0;
+  border-right: 2px solid var(--border2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.version-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+
+.v1-tag { background: rgba(45,90,142,0.1); color: var(--v1); }
+.v2-tag { background: rgba(26,122,94,0.1); color: var(--v2); }
+.v3-tag { background: rgba(142,74,45,0.1); color: var(--v3); }
+.v4-tag { background: rgba(107,76,154,0.1); color: var(--v4); }
+
+.version-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  position: relative;
+  right: -5px;
+  flex-shrink: 0;
+}
+.v1-dot { background: var(--v1); }
+.v2-dot { background: var(--v2); }
+.v3-dot { background: var(--v3); }
+.v4-dot { background: var(--v4); }
+
+.version-body {
+  padding: 24px 0 24px 24px;
+}
+
+.version-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.version-goal {
+  font-size: 13px;
+  color: var(--text2);
+  margin-bottom: 12px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.version-delivers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.deliver-tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  color: var(--text2);
+  font-weight: 400;
+}
+
+/* Module detail */
+.module {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  margin-bottom: 2px;
+}
+
+.module-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.module-num {
+  font-size: 10px;
+  color: var(--text3);
+  font-weight: 500;
+  min-width: 24px;
+}
+
+.module-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1;
+}
+
+.module-version {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+
+.module-body {
+  padding: 24px;
+}
+
+.module-section {
+  margin-bottom: 20px;
+}
+
+.module-section:last-child { margin-bottom: 0; }
+
+.ms-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+
+.ms-content {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.ms-content strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Debate block */
+.debate {
+  background: #fff8f0;
+  border: 1px solid #e8d4b0;
+  border-left: 3px solid var(--gold);
+  padding: 16px 20px;
+  margin-top: 12px;
+}
+
+.debate-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.debate-content {
+  font-size: 12px;
+  color: #7a6040;
+  line-height: 1.8;
+}
+
+/* Pending block */
+.pending {
+  background: #f8f0f8;
+  border: 1px solid #dcc8dc;
+  border-left: 3px solid var(--purple);
+  padding: 16px 20px;
+  margin-top: 12px;
+}
+
+.pending-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 8px;
+}
+
+.pending-content {
+  font-size: 12px;
+  color: #6a5070;
+  line-height: 1.8;
+}
+
+/* Resource table */
+.resource-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.resource-table th {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border2);
+  background: var(--bg3);
+}
+
+.resource-table td {
+  font-size: 12px;
+  color: var(--text2);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.7;
+}
+
+.resource-table tr:last-child td { border-bottom: none; }
+
+/* Decision items */
+.decision-list {
+  margin: 16px 0;
+}
+
+.decision-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.decision-item:last-child { border-bottom: none; }
+
+.decision-who {
+  min-width: 80px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 2px;
+  height: fit-content;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.dw-boss { background: rgba(192,57,43,0.08); color: var(--coral); border: 1px solid rgba(192,57,43,0.2); }
+.dw-gao { background: rgba(45,90,142,0.08); color: var(--accent); border: 1px solid rgba(45,90,142,0.2); }
+.dw-you { background: rgba(26,122,94,0.08); color: var(--accent2); border: 1px solid rgba(26,122,94,0.2); }
+
+.decision-content {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.decision-content strong { color: var(--text); font-weight: 500; }
+
+/* Divider */
+hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+/* Footer */
+.footer {
+  border-top: 2px solid var(--text);
+  padding-top: 24px;
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: .05em;
+}
+
+@media (max-width: 640px) {
+  .cover h1 { font-size: 32px; }
+  .toc-list { grid-template-columns: 1fr; }
+  .cap-grid { grid-template-columns: 1fr; }
+  .version-item { grid-template-columns: 80px 1fr; }
+  .container { padding: 0 20px 60px; }
+}
+
+/* Flow diagram */
+.flow-diagram { margin: 16px 0; overflow-x: auto; }
+.flow-row { display: flex; align-items: center; gap: 0; }
+.flow-box { background: var(--bg2); border: 1px solid var(--border2); border-radius: 6px; padding: 8px 14px; font-size: 12px; font-weight: 500; color: var(--text); white-space: nowrap; text-align: center; min-width: 80px; }
+.flow-box-v1 { background: #eef3f9; border-color: #b8ccdd; color: var(--v1); }
+.flow-box-warn { background: #fdf6e3; border-color: #e8d4a0; color: var(--gold); }
+.flow-box-green { background: #edf7f3; border-color: #b8ddd0; color: var(--accent2); }
+.flow-box-gray { background: var(--bg3); border-color: var(--border2); color: var(--text2); }
+.flow-arrow { font-size: 14px; color: var(--text3); padding: 0 8px; flex-shrink: 0; }
+.flow-sub { font-size: 10px; color: var(--text3); margin-top: 2px; font-weight: 400; }
+.flow-col { display: flex; flex-direction: column; gap: 6px; }
+.flow-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
+
+/* Schema table */
+.schema-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; margin: 12px 0; overflow: hidden; }
+.schema-title { font-size: 11px; font-weight: 700; color: var(--accent); padding: 8px 14px; background: #eef3f9; border-bottom: 1px solid var(--border); letter-spacing: .05em; }
+.schema-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.schema-table th { background: var(--bg3); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); padding: 7px 14px; text-align: left; border-bottom: 1px solid var(--border2); }
+.schema-table td { padding: 7px 14px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: top; line-height: 1.6; }
+.schema-table tr:last-child td { border-bottom: none; }
+.schema-table td:first-child { font-family: monospace; font-size: 11px; color: var(--accent); font-weight: 500; white-space: nowrap; }
+.schema-table td:nth-child(2) { color: var(--text3); font-size: 11px; white-space: nowrap; }
+.field-pk { font-size: 9px; background: #fdf6e3; color: var(--gold); border: 1px solid #e8d4a0; border-radius: 3px; padding: 1px 5px; margin-left: 4px; }
+.field-idx { font-size: 9px; background: #eef3f9; color: var(--v1); border: 1px solid #b8ccdd; border-radius: 3px; padding: 1px 5px; margin-left: 4px; }
+
+/* Rule table */
+.rule-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 12px 0; }
+.rule-table th { background: var(--bg3); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border2); }
+.rule-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: top; line-height: 1.6; font-size: 12px; }
+.rule-table tr:last-child td { border-bottom: none; }
+.rb { display: inline-block; font-size: 10px; font-weight: 500; padding: 1px 7px; border-radius: 3px; white-space: nowrap; }
+.rb-block { background: #fdf0ee; color: var(--coral); border: 1px solid #e8c4bc; }
+.rb-review { background: #fdf6e3; color: var(--gold); border: 1px solid #e8d4a0; }
+.rb-pass { background: #edf7f3; color: var(--accent2); border: 1px solid #b8ddd0; }
+
+/* Dimension table */
+.dim-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 12px 0; }
+.dim-table th { background: var(--bg3); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border2); }
+.dim-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: top; line-height: 1.7; font-size: 12px; }
+.dim-table tr:last-child td { border-bottom: none; }
+.dim-table td:first-child { font-weight: 500; color: var(--text); min-width: 110px; }
+
+/* UI mockup */
+.ui-layout { border: 1px solid var(--border2); border-radius: 8px; overflow: hidden; margin: 12px 0; font-size: 12px; }
+.ui-nav { background: #1a1814; padding: 8px 16px; display: flex; gap: 20px; align-items: center; }
+.ui-nav-brand { font-size: 11px; font-weight: 700; color: white; margin-right: 8px; }
+.ui-nav-item { font-size: 11px; color: rgba(255,255,255,0.4); }
+.ui-nav-item.active { color: white; }
+.ui-body { display: grid; grid-template-columns: 150px 1fr; min-height: 200px; }
+.ui-sidebar { background: var(--bg3); border-right: 1px solid var(--border); padding: 10px 8px; }
+.ui-sidebar-item { font-size: 11px; color: var(--text2); padding: 6px 10px; border-radius: 4px; margin-bottom: 2px; cursor: default; }
+.ui-sidebar-item.active { background: var(--bg2); color: var(--accent); font-weight: 500; border-left: 2px solid var(--accent); }
+.ui-content { padding: 16px; background: var(--bg2); }
+.ui-content-title { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.ui-stat-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.ui-stat { flex: 1; background: var(--bg3); border-radius: 4px; padding: 8px 10px; }
+.ui-stat-label { font-size: 10px; color: var(--text3); margin-bottom: 3px; }
+.ui-stat-val { font-size: 14px; font-weight: 500; color: var(--text); }
+.ui-stat-val.ok { color: var(--accent2); }
+.ui-stat-val.warn { color: var(--gold); }
+.ui-stat-val.err { color: var(--coral); }
+.ui-mini-table { width: 100%; border-collapse: collapse; }
+.ui-mini-table th { font-size: 10px; color: var(--text3); padding: 5px 8px; text-align: left; border-bottom: 1px solid var(--border); background: var(--bg3); }
+.ui-mini-table td { font-size: 11px; color: var(--text2); padding: 6px 8px; border-bottom: 1px solid var(--border); }
+.ui-mini-table tr:last-child td { border-bottom: none; }
+.ui-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 4px; }
+.ui-dot-ok { background: var(--accent2); }
+.ui-dot-warn { background: var(--gold); }
+.ui-dot-err { background: var(--coral); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Cover -->
+  <div class="cover">
+    <h1>技术方案细节<strong>四个版本任务拆解</strong></h1>
+    <p class="cover-desc">数字化决策大脑系统的完整技术方案。包含四个版本各工作内容的架构图、数据表结构、规则清单、人天估算依据，供技术评审参考。</p>
+    <div class="cover-tags">
+      <a href="index.html" class="cover-tag" style="text-decoration:none;cursor:pointer;">← 返回主立项方案</a>
+      <span class="cover-tag">V1 完整版</span>
+      <span class="cover-tag">V2 完整版</span>
+      <span class="cover-tag">V3 待补充</span>
+      <span class="cover-tag">V4 待补充</span>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <p class="toc-label">目录</p>
+    <ul class="toc-list">
+      <li><a href="#v1" onclick="jumpTo(\x27v1\x27);return false;"><span class="toc-num">V1</span>建立公司认知底座</a></li>
+      <li><a href="#v2" onclick="jumpTo(\x27v2\x27);return false;"><span class="toc-num">V2</span>决策辅助 + 策略预判</a></li>
+      <li><a href="#v3" onclick="jumpTo(\x27v3\x27);return false;"><span class="toc-num">V3</span>行业视野与竞品洞察 (待补充)</a></li>
+      <li><a href="#v4" onclick="jumpTo(\x27v4\x27);return false;"><span class="toc-num">V4</span>群体智慧积累与赋能 (待补充)</a></li>
+    </ul>
+  </div>
+
+
+  <!-- V1 Section -->
+  <div class="section" id="v1">
+    <div class="section-header">
+      <span class="section-num">V1</span>
+    </div>
+    <h2 class="section-title">版本一 · 建立公司认知底座</h2>
+    <p class="prose" style="margin-bottom:24px">版本一让系统完整掌握公司的组织、人力、工作内容、产品现状、产品数据、价值观与行为准则。这是所有后续版本的地基。</p>
+
+
+    <!-- T1.1 数据源接入 -->
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">T1.1</span>
+        <span class="module-title">数据源接入 — Lark / 禅道 / 代码仓库</span>
+        <span class="module-version v1-tag">后端 · 10~15 天</span>
+      </div>
+      <div class="module-body">
+
+        <div class="module-section">
+          <p class="ms-label">整体数据流架构</p>
+          <div class="flow-diagram">
+            <p class="flow-label">数据源层</p>
+            <div class="flow-row" style="margin-bottom:8px">
+              <div class="flow-box flow-box-gray" style="text-align:center">
+                <div>Lark</div><div class="flow-sub">群聊 · 文档 · 评论</div>
+              </div>
+              <div class="flow-arrow">　</div>
+              <div class="flow-box flow-box-gray">
+                <div>禅道</div><div class="flow-sub">需求 · 任务 · Bug</div>
+              </div>
+              <div class="flow-arrow">　</div>
+              <div class="flow-box flow-box-gray">
+                <div>代码仓库</div><div class="flow-sub">commit · PR · review</div>
+              </div>
+            </div>
+            <div class="flow-row" style="justify-content:center;margin-bottom:8px">
+              <div style="font-size:20px;color:var(--text3)">↓</div>
+            </div>
+            <p class="flow-label">调度层</p>
+            <div class="flow-row" style="margin-bottom:8px;justify-content:center">
+              <div class="flow-box flow-box-v1" style="min-width:200px">
+                <div>n8n 工作流调度</div>
+                <div class="flow-sub">Webhook 实时 + 定时批量</div>
+              </div>
+            </div>
+            <div class="flow-row" style="justify-content:center;margin-bottom:8px">
+              <div style="font-size:20px;color:var(--text3)">↓</div>
+            </div>
+            <p class="flow-label">过滤层</p>
+            <div class="flow-row" style="margin-bottom:8px;justify-content:center">
+              <div class="flow-box flow-box-warn" style="min-width:200px">
+                <div>隐私过滤中间件</div>
+                <div class="flow-sub">规则过滤 → AI 语义分类</div>
+              </div>
+            </div>
+            <div class="flow-row" style="justify-content:center;margin-bottom:8px">
+              <div style="font-size:20px;color:var(--text3)">↓</div>
+            </div>
+            <p class="flow-label">存储层</p>
+            <div class="flow-row" style="gap:12px">
+              <div class="flow-box flow-box-green" style="flex:1">
+                <div>PostgreSQL</div>
+                <div class="flow-sub">原始数据 · 结构化存储</div>
+              </div>
+              <div class="flow-box flow-box-green" style="flex:1">
+                <div>pgvector</div>
+                <div class="flow-sub">向量化内容 · 语义检索</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">同步频率与方式</p>
+          <table class="rule-table">
+            <thead><tr><th>数据源</th><th>同步方式</th><th>频率</th><th>备注</th></tr></thead>
+            <tbody>
+              <tr><td>Lark 新消息</td><td>Webhook 推送</td><td>实时</td><td>需在 Lark 开放平台配置订阅</td></tr>
+              <tr><td>Lark 文档</td><td>定时全量检查增量</td><td>每日</td><td>检查 updated_at 变化</td></tr>
+              <tr><td>禅道任务变更</td><td>定时拉取</td><td>每日凌晨</td><td>拉取前一天所有变更记录</td></tr>
+              <tr><td>代码仓库 commit</td><td>Webhook 推送</td><td>实时</td><td>监听 push / merge 事件</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">核心数据表结构</p>
+          <div class="schema-wrap">
+            <div class="schema-title">raw_messages — 原始消息表</div>
+            <table class="schema-table">
+              <thead><tr><th>字段名</th><th>类型</th><th>说明</th></tr></thead>
+              <tbody>
+                <tr><td>id <span class="field-pk">PK</span></td><td>uuid</td><td>唯一标识</td></tr>
+                <tr><td>source</td><td>varchar</td><td>来源：lark / zentao / github / gitlab</td></tr>
+                <tr><td>source_id</td><td>varchar</td><td>来源系统的原始 ID，用于去重</td></tr>
+                <tr><td>channel_id <span class="field-idx">IDX</span></td><td>varchar</td><td>频道/项目 ID</td></tr>
+                <tr><td>author_id</td><td>varchar</td><td>发送者 ID</td></tr>
+                <tr><td>content</td><td>text</td><td>原始内容，保留用于溯源</td></tr>
+                <tr><td>filter_status</td><td>varchar</td><td>passed / blocked / pending_review</td></tr>
+                <tr><td>created_at <span class="field-idx">IDX</span></td><td>timestamptz</td><td>原始创建时间</td></tr>
+                <tr><td>synced_at</td><td>timestamptz</td><td>同步到系统的时间</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="schema-wrap" style="margin-top:8px">
+            <div class="schema-title">knowledge_chunks — 向量知识块表</div>
+            <table class="schema-table">
+              <thead><tr><th>字段名</th><th>类型</th><th>说明</th></tr></thead>
+              <tbody>
+                <tr><td>id <span class="field-pk">PK</span></td><td>uuid</td><td>唯一标识</td></tr>
+                <tr><td>source_id</td><td>uuid</td><td>关联 raw_messages.id</td></tr>
+                <tr><td>content</td><td>text</td><td>经清洗的文本内容（300~500 token）</td></tr>
+                <tr><td>embedding</td><td>vector(1536)</td><td>向量，由 embedding API 生成</td></tr>
+                <tr><td>doc_title</td><td>varchar</td><td>所属文档标题</td></tr>
+                <tr><td>project</td><td>varchar</td><td>所属项目</td></tr>
+                <tr><td>author</td><td>varchar</td><td>内容作者</td></tr>
+                <tr><td>chunk_index</td><td>int</td><td>在原文档中的顺序位置</td></tr>
+                <tr><td>created_at <span class="field-idx">IDX</span></td><td>timestamptz</td><td>入库时间</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">异常处理方案</p>
+          <table class="rule-table">
+            <thead><tr><th>异常类型</th><th>处理方式</th><th>告警</th></tr></thead>
+            <tbody>
+              <tr><td>API 请求失败（网络/限流）</td><td>指数退避重试，最多 3 次；失败后写入 sync_error 日志</td><td>n8n 推送告警到指定频道</td></tr>
+              <tr><td>数据重复</td><td>以 source + source_id 做唯一索引，重复时更新而非插入</td><td>无需告警</td></tr>
+              <tr><td>内容超长（单条 > 10万字）</td><td>自动切分后分批处理</td><td>记录日志</td></tr>
+              <tr><td>Embedding API 失败</td><td>放入重试队列，下次定时任务补跑</td><td>连续失败超 10 条时告警</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">人天估算依据</p>
+          <p class="ms-content">Lark API 对接 + 过滤逻辑 3~5 天，禅道 API 对接 2~3 天，代码仓库 Webhook 1~2 天，n8n 工作流配置 + 调试 2~3 天，数据表设计 + Supabase 初始化 1~2 天。合计 <strong>10~15 天</strong>。</p>
+        </div>
+
+        <div class="debate">
+          <p class="debate-label">待评估</p>
+          <p class="debate-content">禅道版本需确认（不同版本 API 差异较大）。Lark 企业自建应用审批可能需要 1~2 周，建议立项后第一时间提交申请。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- T1.2 文档知识库 -->
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">T1.2</span>
+        <span class="module-title">文档知识库搭建 — 向量化存储与语义检索</span>
+        <span class="module-version v1-tag">后端 · 5~8 天</span>
+      </div>
+      <div class="module-body">
+
+        <div class="module-section">
+          <p class="ms-label">RAG 检索流程</p>
+          <div class="flow-diagram">
+            <div class="flow-row">
+              <div class="flow-box flow-box-gray"><div>用户输入</div><div class="flow-sub">自然语言查询</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-v1"><div>向量化</div><div class="flow-sub">Embedding API</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-v1"><div>相似度搜索</div><div class="flow-sub">pgvector 余弦</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-green"><div>Top-K 段落</div><div class="flow-sub">最相关内容</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-green"><div>AI 推演</div><div class="flow-sub">拼入上下文</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">文档入库优先级</p>
+          <table class="rule-table">
+            <thead><tr><th>批次</th><th>内容类型</th><th>原因</th></tr></thead>
+            <tbody>
+              <tr><td><span class="rb rb-block" style="background:#eef3f9;color:var(--v1);border-color:#b8ccdd">第一批</span></td><td>产品功能文档、复盘文档、版本发布记录</td><td>信息密度最高，是系统理解公司产品和历史决策的核心来源</td></tr>
+              <tr><td><span class="rb rb-review">第二批</span></td><td>Lark 工作文档（方案、需求、技术设计）</td><td>覆盖日常工作讨论，补充第一批的细节</td></tr>
+              <tr><td><span class="rb rb-pass">第三批</span></td><td>历史会议纪要（文字版）、培训材料</td><td>有则补充，优先级较低</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">切分策略</p>
+          <p class="ms-content">不按文件切分，按<strong>语义段落</strong>切分（每段 300~500 token）。切分边界优先在标题、空行、句号处断开。每个向量块保留元数据：文档标题、来源、创建时间、作者、所属项目、在原文档中的顺序位置（用于检索后按顺序拼接上下文）。</p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">更新与版本管理</p>
+          <table class="rule-table">
+            <thead><tr><th>场景</th><th>处理方式</th></tr></thead>
+            <tbody>
+              <tr><td>文档新增</td><td>切分 → 向量化 → 入库，同时建立文档索引记录</td></tr>
+              <tr><td>文档修改</td><td>对比 updated_at 变化，删除旧向量块，重新切分入库；保留历史版本记录用于审计</td></tr>
+              <tr><td>文档删除</td><td>软删除：标记 deleted_at，向量块不参与检索但保留原文</td></tr>
+              <tr><td>来源系统重复内容</td><td>以文档来源 + 文档 ID 做唯一键，避免同一文档被重复入库</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">人天估算依据</p>
+          <p class="ms-content">切分逻辑 1~2 天，Embedding API 集成 1 天，pgvector 表结构 + 索引 1 天，批量历史文档入库脚本 1~2 天，检索接口封装 1~2 天。合计 <strong>5~8 天</strong>。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- T1.3 隐私过滤 -->
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">T1.3</span>
+        <span class="module-title">隐私过滤规则 — 工作内容识别与隐私内容拦截</span>
+        <span class="module-version v1-tag">后端 · 3~5 天</span>
+      </div>
+      <div class="module-body">
+
+        <div class="module-section">
+          <p class="ms-label">三层过滤流程</p>
+          <div class="flow-diagram">
+            <div class="flow-row">
+              <div class="flow-box flow-box-gray"><div>原始数据</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-gray"><div>第一层</div><div class="flow-sub">频道白名单</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-warn"><div>第二层</div><div class="flow-sub">规则过滤</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-warn"><div>第三层</div><div class="flow-sub">AI 语义分类</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-green"><div>入库</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">第二层：规则过滤清单</p>
+          <table class="rule-table">
+            <thead><tr><th>类别</th><th>匹配规则（示例）</th><th>处理</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>结构化隐私数据</td>
+                <td>手机号（1[3-9]\d{9}）、身份证（\d{15,18}）、银行卡号（\d{16,19}）</td>
+                <td><span class="rb rb-block">拦截</span></td>
+              </tr>
+              <tr>
+                <td>薪资相关</td>
+                <td>工资、薪水、薪资、涨薪、降薪、绩效奖金、年终奖、offer salary</td>
+                <td><span class="rb rb-block">拦截</span></td>
+              </tr>
+              <tr>
+                <td>招聘相关</td>
+                <td>背调、入职、离职、辞职、裁员、offer letter、试用期</td>
+                <td><span class="rb rb-block">拦截</span></td>
+              </tr>
+              <tr>
+                <td>个人联系方式</td>
+                <td>微信号、QQ、个人邮箱（非企业域名）</td>
+                <td><span class="rb rb-block">拦截</span></td>
+              </tr>
+              <tr>
+                <td>情绪性表达</td>
+                <td>包含骂人词汇、强烈情绪词 + 人名组合</td>
+                <td><span class="rb rb-review">待审核</span></td>
+              </tr>
+              <tr>
+                <td>工作讨论</td>
+                <td>含项目名/需求/bug/版本/接口/代码/文档等关键词</td>
+                <td><span class="rb rb-pass">通过</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">第三层：AI 语义分类</p>
+          <p class="ms-content">对规则层无法明确判断的内容（置信度低），调用轻量 AI 模型（Claude Haiku，成本约 $0.001/千 token）做二次判断。分类结果：工作内容（通过）/ 个人私事（拦截）/ 不确定（待审核）。待审核内容推送给系统管理员处理，处理结果反馈给规则库持续优化。</p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">待审核内容处理流程</p>
+          <div class="flow-diagram">
+            <div class="flow-row">
+              <div class="flow-box flow-box-warn"><div>待审核内容</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-gray"><div>推送通知</div><div class="flow-sub">管理员频道</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-gray"><div>管理员处理</div><div class="flow-sub">通过 / 拦截</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-green"><div>结果反馈</div><div class="flow-sub">优化规则库</div></div>
+            </div>
+          </div>
+          <p class="ms-content" style="margin-top:8px">待审核内容<strong>不显示原文</strong>，只显示：来源频道、内容摘要（前20字脱敏）、AI 分类理由。管理员 7 天内未处理则自动拦截。</p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">人天估算依据</p>
+          <p class="ms-content">规则过滤实现 1 天，AI 分类接口集成 1 天，中间件架构 1 天，待审核流程 + 日志 1~2 天。合计 <strong>3~5 天</strong>。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- T1.4 思维方式文档生成 -->
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">T1.4</span>
+        <span class="module-title">思维方式文档生成 — AI 提炼 + 人工确认</span>
+        <span class="module-version v1-tag">后端 + 产品 · 3~5 天</span>
+      </div>
+      <div class="module-body">
+
+        <div class="module-section">
+          <p class="ms-label">提炼维度完整列表</p>
+          <table class="dim-table">
+            <thead><tr><th>维度</th><th>提炼内容</th><th>数据来源</th><th>输出格式</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>需求处理方式</td>
+                <td>需求不明确时团队怎么澄清、谁来拍板、反复改需求的处理模式</td>
+                <td>禅道需求变更记录 + Lark 需求讨论</td>
+                <td>200~300 字描述 + 典型案例引用</td>
+              </tr>
+              <tr>
+                <td>技术选型偏好</td>
+                <td>做技术方案时更看重速度/质量/成本中的哪个、对引入新技术的态度</td>
+                <td>技术方案文档 + 代码 PR review 评论</td>
+                <td>倾向描述 + 历史决策案例</td>
+              </tr>
+              <tr>
+                <td>分歧收敛方式</td>
+                <td>遇到意见不一致时怎么决策、是投票/权威拍板/数据说话</td>
+                <td>Lark 讨论记录 + 会议纪要</td>
+                <td>决策机制描述 + 案例</td>
+              </tr>
+              <tr>
+                <td>延期规律</td>
+                <td>哪类任务最容易延期、延期的主要原因分布</td>
+                <td>禅道任务完成时间 vs 预期时间</td>
+                <td>原因分类占比 + 典型模式</td>
+              </tr>
+              <tr>
+                <td>反复出现的问题</td>
+                <td>复盘文档中多次提到的同类问题、已有的解决共识</td>
+                <td>复盘文档</td>
+                <td>问题列表 + 现有共识</td>
+              </tr>
+              <tr>
+                <td>质量标准</td>
+                <td>什么叫"做完"——验收标准的严格程度、测试覆盖习惯</td>
+                <td>禅道验收记录 + Bug 回流率</td>
+                <td>标准描述 + 历史数据</td>
+              </tr>
+              <tr>
+                <td>沟通协作风格</td>
+                <td>信息同步习惯、跨团队协作方式、紧急情况处理节奏</td>
+                <td>Lark 群聊记录</td>
+                <td>风格描述 + 典型场景</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">生成与确认流程</p>
+          <div class="flow-diagram">
+            <div class="flow-row">
+              <div class="flow-box flow-box-gray"><div>知识库数据</div><div class="flow-sub">相关片段检索</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-v1"><div>Claude API</div><div class="flow-sub">按维度提炼</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-warn"><div>初稿生成</div><div class="flow-sub">含置信度 + 来源</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-gray"><div>管理层审阅</div><div class="flow-sub">确认/修改/拒绝</div></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-green"><div>写入思想层</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">输出数据结构</p>
+          <div class="schema-wrap">
+            <div class="schema-title">cognition_docs — 认知文档表</div>
+            <table class="schema-table">
+              <thead><tr><th>字段名</th><th>类型</th><th>说明</th></tr></thead>
+              <tbody>
+                <tr><td>id <span class="field-pk">PK</span></td><td>uuid</td><td>唯一标识</td></tr>
+                <tr><td>dimension <span class="field-idx">IDX</span></td><td>varchar</td><td>维度名：decision_style / tech_preference 等</td></tr>
+                <tr><td>content</td><td>text</td><td>AI 生成的认知描述正文</td></tr>
+                <tr><td>confidence</td><td>float</td><td>AI 置信度 0~1</td></tr>
+                <tr><td>source_refs</td><td>jsonb</td><td>支撑来源列表（knowledge_chunks ID 数组）</td></tr>
+                <tr><td>status <span class="field-idx">IDX</span></td><td>varchar</td><td>draft / confirmed / rejected</td></tr>
+                <tr><td>version</td><td>int</td><td>版本号，每次修改递增</td></tr>
+                <tr><td>reviewed_by</td><td>varchar</td><td>审阅人</td></tr>
+                <tr><td>reviewed_at</td><td>timestamptz</td><td>审阅时间</td></tr>
+                <tr><td>created_at</td><td>timestamptz</td><td>生成时间</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">人天估算依据</p>
+          <p class="ms-content">Prompt 设计与调试 1~2 天（主要工作量，需反复迭代），生成流程开发 1 天，数据库表设计 0.5 天，管理界面对接 0.5~1 天。合计 <strong>3~5 天</strong>。产品配合审阅约 1~2 天另计。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- T1.5 管理界面 -->
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">T1.5</span>
+        <span class="module-title">管理界面 — 知识库查阅与数据源状态监控</span>
+        <span class="module-version v1-tag">前端 · 5~8 天（Retool）</span>
+      </div>
+      <div class="module-body">
+
+        <div class="module-section">
+          <p class="ms-label">界面结构示意</p>
+          <div class="ui-layout">
+            <div class="ui-nav">
+              <span class="ui-nav-brand">决策大脑 · 管理后台</span>
+              <span class="ui-nav-item active">数据源</span>
+              <span class="ui-nav-item">知识库</span>
+              <span class="ui-nav-item">过滤日志</span>
+              <span class="ui-nav-item">认知文档</span>
+              <span class="ui-nav-item">配置</span>
+            </div>
+            <div class="ui-body">
+              <div class="ui-sidebar">
+                <div class="ui-sidebar-item active">数据源状态</div>
+                <div class="ui-sidebar-item">Lark</div>
+                <div class="ui-sidebar-item">禅道</div>
+                <div class="ui-sidebar-item">代码仓库</div>
+              </div>
+              <div class="ui-content">
+                <div class="ui-content-title">数据源状态总览</div>
+                <div class="ui-stat-row">
+                  <div class="ui-stat">
+                    <div class="ui-stat-label">Lark 消息</div>
+                    <div class="ui-stat-val ok">正常</div>
+                  </div>
+                  <div class="ui-stat">
+                    <div class="ui-stat-label">禅道同步</div>
+                    <div class="ui-stat-val ok">正常</div>
+                  </div>
+                  <div class="ui-stat">
+                    <div class="ui-stat-label">代码仓库</div>
+                    <div class="ui-stat-val warn">待确认</div>
+                  </div>
+                  <div class="ui-stat">
+                    <div class="ui-stat-label">今日入库</div>
+                    <div class="ui-stat-val">342 条</div>
+                  </div>
+                </div>
+                <table class="ui-mini-table">
+                  <thead><tr><th>数据源</th><th>最后同步</th><th>状态</th><th>今日新增</th></tr></thead>
+                  <tbody>
+                    <tr><td>Lark 工作群</td><td>5 分钟前</td><td><span class="ui-dot ui-dot-ok"></span>正常</td><td>218 条</td></tr>
+                    <tr><td>禅道任务</td><td>今日 03:00</td><td><span class="ui-dot ui-dot-ok"></span>正常</td><td>87 条</td></tr>
+                    <tr><td>GitLab</td><td>2 小时前</td><td><span class="ui-dot ui-dot-warn"></span>待确认</td><td>37 条</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--text3);margin-top:6px">↑ 界面示意（非真实数据），实际用 Retool 搭建</p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">各功能页面说明</p>
+          <table class="dim-table">
+            <thead><tr><th>页面</th><th>核心功能</th><th>数据来源</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>数据源状态</td>
+                <td>各数据源同步时间、状态指示（正常/失败/待确认）、今日新增量</td>
+                <td>sync_logs 表</td>
+              </tr>
+              <tr>
+                <td>知识库浏览</td>
+                <td>按来源/日期/项目/作者筛选，支持关键词搜索，可查看原始片段和向量块</td>
+                <td>knowledge_chunks 表</td>
+              </tr>
+              <tr>
+                <td>过滤日志</td>
+                <td>拦截统计（按类别）、待审核队列、审核操作（通过/拦截）</td>
+                <td>raw_messages + filter_logs 表</td>
+              </tr>
+              <tr>
+                <td>认知文档审阅</td>
+                <td>AI 生成初稿列表、确认/编辑/拒绝操作、历史版本查阅</td>
+                <td>cognition_docs 表</td>
+              </tr>
+              <tr>
+                <td>配置</td>
+                <td>频道白名单管理、过滤关键词维护、同步频率调整</td>
+                <td>config 表</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">人天估算依据</p>
+          <p class="ms-content">Retool 方案：数据源状态看板 1 天，知识库浏览 + 搜索 1~2 天，过滤日志 + 审核流程 1 天，认知文档审阅 1~2 天，配置页 1 天，联调测试 0.5~1 天。合计 <strong>5~8 天</strong>。</p>
+        </div>
+
+        <div class="debate">
+          <p class="debate-label">待确认</p>
+          <p class="debate-content">管理界面使用人数决定 Retool 费用档位。3~5 人使用免费版即可，超过 5 人需付费（$10/用户/月），建议立项时确认。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <p><strong>版本一整体架构小结：</strong>n8n 负责数据调度 → 隐私过滤中间件拦截敏感内容 → Supabase（PostgreSQL + pgvector）统一存储原始数据和向量 → Claude API 做内容提炼和认知文档生成 → Retool 提供管理界面。所有组件均可部署在同一台服务器，运维复杂度低，适合小团队维护。</p>
+    </div>
+
+    <!-- =================================== -->
+    <!-- V2 Task Breakdown -->
+    <!-- =================================== -->
+
+  </div>
+
+  <!-- V2 Section -->
+  <div class="section" id="v2">
+    <div class="section-header">
+      <span class="section-num">V2</span>
+    </div>
+    <h2 class="section-title">版本二 · 决策辅助 + 策略预判</h2>
+    <p class="prose" style="margin-bottom:24px">版本二在版本一的认知底座上叠加业务监控和策略预判能力。核心是把"凭经验决策"变成"基于数据和模拟决策"。包含五个工作内容：核心指标监控体系、用户画像体系、策略预判引擎、AI 推演引擎、运营使用界面。</p>
+
+
+
+    <!-- T2.1 -->
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">T2.1</span>
+        <span class="module-title">核心指标监控体系 — 数数科技六模块配置</span>
+        <span class="module-version v2-tag">后端 · 8~12 天</span>
+      </div>
+      <div class="module-body">
+
+        <div class="module-section">
+          <p class="ms-label">整体架构</p>
+          <div class="flow-diagram">
+            <p class="flow-label">数据源层</p>
+            <div class="flow-row" style="margin-bottom:8px">
+              <div class="flow-box flow-box-gray" style="text-align:center">
+                <div>数数科技</div><div class="flow-sub">原始事件数据</div>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box flow-box-gray" style="text-align:center">
+                <div>后端日志</div><div class="flow-sub">业务侧补充数据</div>
+              </div>
+            </div>
+            <p class="flow-label" style="margin-top:14px">指标计算层</p>
+            <div class="flow-row" style="margin-bottom:8px">
+              <div class="flow-box flow-box-purple" style="flex:1;text-align:center">
+                <div>六模块指标体系</div>
+                <div class="flow-sub">收益健康 · 用户留存 · 付费转化 · 游戏行为 · 渠道代理 · 活动效果</div>
+              </div>
+            </div>
+            <p class="flow-label" style="margin-top:14px">监控应用层</p>
+            <div class="flow-row">
+              <div class="flow-box flow-box-teal" style="text-align:center">
+                <div>实时看板</div><div class="flow-sub">业务可视化</div>
+              </div>
+              <div class="flow-arrow">+</div>
+              <div class="flow-box flow-box-teal" style="text-align:center">
+                <div>异常预警</div><div class="flow-sub">规则触发推送</div>
+              </div>
+              <div class="flow-arrow">+</div>
+              <div class="flow-box flow-box-teal" style="text-align:center">
+                <div>归因分析</div><div class="flow-sub">AI 自动判断</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">六模块指标设计</p>
+          <table class="rule-table">
+            <thead>
+              <tr><th>模块</th><th>核心指标</th><th>预警规则示例</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>收益健康</strong></td>
+                <td>日充值总额、ARPPU、充值成功率、人均充值次数</td>
+                <td>充值成功率连续 3 天 &lt; 75% / 日充值环比下跌 &gt; 20%</td>
+              </tr>
+              <tr>
+                <td><strong>用户留存</strong></td>
+                <td>次留、3 留、7 留、30 留分群曲线、流失预警信号</td>
+                <td>新增用户次留 &lt; 历史均值 -10% / 大 R 用户连续 7 天未登录</td>
+              </tr>
+              <tr>
+                <td><strong>付费转化</strong></td>
+                <td>注册→首充漏斗、各环节转化率、首充时长分布</td>
+                <td>注册→首充转化率连续下降 / 首充用户占比骤变</td>
+              </tr>
+              <tr>
+                <td><strong>游戏行为</strong></td>
+                <td>各游戏 DAU、人均时长、游戏切换路径、人均下注</td>
+                <td>头部游戏 DAU 异常 / 游戏切换率突变</td>
+              </tr>
+              <tr>
+                <td><strong>渠道代理</strong></td>
+                <td>各渠道 LTV、各代理拉新质量、套利异常率</td>
+                <td>渠道 LTV 跌穿盈亏线 / 套利风险用户聚集</td>
+              </tr>
+              <tr>
+                <td><strong>活动效果</strong></td>
+                <td>活动参与率、活动 ROI、活动后留存对比</td>
+                <td>活动 ROI &lt; 1.0 / 活动后留存反而下降</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">异常预警机制</p>
+          <p class="ms-content">
+            <strong>三层预警逻辑：</strong>
+          </p>
+          <table class="rule-table">
+            <thead>
+              <tr><th>预警等级</th><th>触发条件</th><th>响应动作</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:var(--coral)">紧急</strong></td>
+                <td>核心指标骤变（如充值成功率 &lt; 50%、DAU 暴跌 &gt; 30%）</td>
+                <td>立即推送至运营群，AI 给出初步归因</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--gold)">警告</strong></td>
+                <td>指标偏离基准 10~20%，连续 2~3 天</td>
+                <td>每日报告中突出显示，推荐排查方向</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--accent)">观察</strong></td>
+                <td>指标缓慢偏离，趋势性变化</td>
+                <td>周度报告归类，长期跟踪</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">技术实现</p>
+          <p class="ms-content">
+            <strong>数据接入：</strong>通过数数科技 Open API 拉取原始事件数据，定时任务（每 15 分钟）增量同步。后端日志通过专门接口接入，弥补数数科技未覆盖的业务侧数据。<br><br>
+            <strong>指标计算：</strong>原始数据进 PostgreSQL，预聚合层计算各指标日/小时粒度结果，存入 metrics 表（按模块、指标名、时间维度建索引）。预警规则配置存 alert_rules 表，定时扫描触发。<br><br>
+            <strong>看板展示：</strong>Grafana 或自建前端展示，按模块分页，支持下钻查看明细。预警通过 Lark 机器人推送到运营群。<br><br>
+            <strong>归因分析：</strong>异常触发时，调用 Claude API，传入异常指标 + 同期相关指标 + 业务上下文，生成初步归因建议。这部分依赖版本一的认知底座（产品文档、规律库）。
+          </p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">数据表结构（关键表）</p>
+          <pre style="background:var(--bg3);padding:12px 14px;border-radius:6px;font-size:12px;line-height:1.7;overflow-x:auto;color:var(--text);">
+metrics（指标值表）
+- id, module, metric_name, value, granularity, ts
+- 索引：(module, metric_name, ts), (granularity, ts)
+
+alert_rules（预警规则表）
+- id, module, metric_name, condition, threshold, level, enabled
+- 例：{module:'收益健康', metric:'充值成功率', condition:'&lt; 75% for 3 days', level:'紧急'}
+
+alert_history（预警历史表）
+- id, rule_id, triggered_at, metric_value, ai_attribution, status
+- ai_attribution 字段存 AI 给出的归因结论 JSON</pre>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">人天估算依据</p>
+          <p class="ms-content">数数科技 API 接入 + 数据同步 2~3 天，六模块指标定义 + 计算逻辑 2~3 天，预警规则系统 1~2 天，看板配置（Grafana 或自建）2~3 天，归因分析 AI 集成 1~2 天。合计 8~12 天。自研方案需自建数据采集 + 计算引擎，增加 7~8 天。</p>
+        </div>
+
+        <div class="debate">
+          <p class="debate-label">待评估</p>
+          <p class="debate-content">数数科技的 API 调用频率限制需提前确认（影响实时性）。预警规则的初始阈值需要基于历史数据回测调整，避免初期误报过多。归因分析的 AI 调用成本需要监控（每次预警都触发 Claude API）。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- T2.2 -->
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">T2.2</span>
+        <span class="module-title">用户画像体系 — 三层叠加建模</span>
+        <span class="module-version v2-tag">后端 · 10~15 天</span>
+      </div>
+      <div class="module-body">
+
+        <div class="module-section">
+          <p class="ms-label">三层画像架构</p>
+          <div class="flow-diagram">
+            <p class="flow-label">第一层 · 行为层</p>
+            <div class="flow-row" style="margin-bottom:8px">
+              <div class="flow-box flow-box-gray" style="flex:1;text-align:center">
+                <div>下注 · 产出 · 充值 · 提现 · 登录频率 · 在线时长</div>
+                <div class="flow-sub">最稳定的事实数据，构成画像基底</div>
+              </div>
+            </div>
+            <p class="flow-label" style="margin-top:14px">第二层 · 来源层</p>
+            <div class="flow-row" style="margin-bottom:8px">
+              <div class="flow-box flow-box-purple" style="flex:1;text-align:center">
+                <div>注册渠道 · 代理树位置 · 推荐人 · 首次下注游戏</div>
+                <div class="flow-sub">解释用户来源差异，影响后续行为预测</div>
+              </div>
+            </div>
+            <p class="flow-label" style="margin-top:14px">第三层 · 偏好层</p>
+            <div class="flow-row">
+              <div class="flow-box flow-box-teal" style="flex:1;text-align:center">
+                <div>游戏类型偏好 · 刺激度倾向 · 交互强度 · 开奖频率偏好</div>
+                <div class="flow-sub">从行为推导，最易变也最有营销价值</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">分群策略</p>
+          <p class="ms-content">不做单一维度分群（如"所有大 R"），而是用三层叠加分群——例如"渠道 A 来的偏好 Teen Patti 的中 R 用户"。这样的分群更精准，营销策略对应也更明确。</p>
+          <table class="rule-table">
+            <thead>
+              <tr><th>分群示例</th><th>典型特征</th><th>对应策略方向</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>新注册大 R</td>
+                <td>注册 7 天内首充 ≥ 500₹，下注规模快速上升</td>
+                <td>VIP 客服快速接入、专属充值奖励</td>
+              </tr>
+              <tr>
+                <td>休眠中 R</td>
+                <td>历史中 R，最近 30 天下注下降 70%+</td>
+                <td>定向召回活动、好友邀请奖励</td>
+              </tr>
+              <tr>
+                <td>套利风险用户</td>
+                <td>注册即领奖，下注集中在低风险游戏，提现频繁</td>
+                <td>风控标记、活动门槛限制</td>
+              </tr>
+              <tr>
+                <td>偏好转移期用户</td>
+                <td>原本主玩 A 游戏，最近开始尝试 B 游戏</td>
+                <td>B 游戏的引导奖励、组合推荐</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">虚拟用户生成（用于策略预判）</p>
+          <p class="ms-content">
+            画像不只是分析工具，也是策略预判的输入。系统会基于真实用户分布生成虚拟用户群——保持各分群的占比和典型特征，但不绑定真实身份。新策略上线前先在虚拟用户群里跑模拟，预测各分群的反应。<br><br>
+            <strong>生成方式：</strong>从真实数据中抽取分群核心特征（如"中 R 用户的平均下注、留存曲线、付费时间分布"），生成符合分布的合成用户。规模可配置，常用 1 万~10 万的样本量做策略预判。
+          </p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">数据表结构</p>
+          <pre style="background:var(--bg3);padding:12px 14px;border-radius:6px;font-size:12px;line-height:1.7;overflow-x:auto;color:var(--text);">
+user_profiles（用户画像主表）
+- user_id, behavior_features JSONB, source_features JSONB, preference_features JSONB
+- updated_at, version
+- 索引：(user_id), GIN 索引 on JSONB 字段
+
+user_segments（分群定义表）
+- segment_id, name, rule_definition JSONB, user_count, last_calc_at
+
+user_segment_members（分群成员表）
+- segment_id, user_id, joined_at, left_at
+- 用于跟踪用户在分群间的迁移
+
+virtual_users（虚拟用户表）
+- vuser_id, segment_id, simulated_features JSONB, batch_id
+- batch_id 标识同一次生成的批次，便于策略预判时复用</pre>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">技术实现</p>
+          <p class="ms-content">
+            <strong>画像计算：</strong>基于版本一的数据底座，每日定时任务计算所有用户的三层特征。增量更新（只算有行为变化的用户）。<br><br>
+            <strong>分群引擎：</strong>分群规则用 JSON 描述，存数据库可配置。引擎遍历用户画像匹配规则，生成分群成员关系。规则变更时支持回算历史。<br><br>
+            <strong>偏好层推导：</strong>用统计方法（不是机器学习黑盒），例如"过去 30 天 70% 下注集中在 Teen Patti"→ 偏好 Teen Patti。可解释性强，便于运营理解。<br><br>
+            <strong>虚拟用户生成：</strong>用 Python 脚本，按分群从真实数据抽样特征分布，生成合成用户存入 virtual_users 表。
+          </p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">人天估算依据</p>
+          <p class="ms-content">行为层 + 来源层特征计算 3~4 天，偏好层推导逻辑 2~3 天，分群引擎 + 规则系统 2~3 天，虚拟用户生成 2~3 天，画像更新调度 + 测试 1~2 天。合计 10~15 天。自研方案需自建复杂的特征工程平台，增加 10 天。</p>
+        </div>
+
+        <div class="debate">
+          <p class="debate-label">待评估</p>
+          <p class="debate-content">分群粒度需要平衡——过粗（如只分大中小 R）信息量不足；过细（如几十个交叉分群）样本量不够导致策略预判失真。建议初期 8~12 个核心分群，后续根据使用情况调整。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- T2.3 -->
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">T2.3</span>
+        <span class="module-title">策略预判引擎（数字孪生机制）</span>
+        <span class="module-version v2-tag">后端 · 15~20 天</span>
+      </div>
+      <div class="module-body">
+
+        <div class="module-section">
+          <p class="ms-label">核心目标</p>
+          <p class="ms-content">在新运营策略真正上线前，<strong>用虚拟用户群在虚拟环境中模拟一遍</strong>，预测对各分群用户的影响、整体数据变化、潜在风险。让决策从"上线后才知道效果"变成"上线前已有合理预期"。</p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">仿真架构</p>
+          <div class="flow-diagram">
+            <p class="flow-label">输入层</p>
+            <div class="flow-row" style="margin-bottom:8px">
+              <div class="flow-box flow-box-gray" style="text-align:center">
+                <div>新策略文档</div><div class="flow-sub">运营提交</div>
+              </div>
+              <div class="flow-arrow">+</div>
+              <div class="flow-box flow-box-gray" style="text-align:center">
+                <div>虚拟用户群</div><div class="flow-sub">来自 T2.2</div>
+              </div>
+              <div class="flow-arrow">+</div>
+              <div class="flow-box flow-box-gray" style="text-align:center">
+                <div>规律知识库</div><div class="flow-sub">来自版本一</div>
+              </div>
+            </div>
+            <p class="flow-label" style="margin-top:14px">推演层</p>
+            <div class="flow-row" style="margin-bottom:8px">
+              <div class="flow-box flow-box-purple" style="flex:1;text-align:center">
+                <div>策略影响推演引擎</div>
+                <div class="flow-sub">解析策略 → 匹配类似历史 → 预测各分群响应概率</div>
+              </div>
+            </div>
+            <p class="flow-label" style="margin-top:14px">输出层</p>
+            <div class="flow-row">
+              <div class="flow-box flow-box-teal" style="text-align:center">
+                <div>分群预测报告</div>
+              </div>
+              <div class="flow-arrow">+</div>
+              <div class="flow-box flow-box-teal" style="text-align:center">
+                <div>整体效果预估</div>
+              </div>
+              <div class="flow-arrow">+</div>
+              <div class="flow-box flow-box-teal" style="text-align:center">
+                <div>风险与置信度</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">推演方法</p>
+          <p class="ms-content">
+            <strong>不做大规模 ML 模型训练。</strong>这种规模的训练在我们的数据量级和团队配置下不现实，且可解释性差。<br><br>
+            采用<strong>规律匹配 + AI 推理</strong>的混合方法：<br>
+            <strong>第一步</strong>：解析策略文档（规则、奖励、目标人群），结构化为可推演输入。<br>
+            <strong>第二步</strong>：在规律知识库（来自版本一的历史复盘 + 数数科技的指标基准）中匹配类似策略的历史效果。<br>
+            <strong>第三步</strong>：基于匹配到的历史规律，结合当前用户分布，推演各分群对新策略的响应概率。<br>
+            <strong>第四步</strong>：Claude API 综合分析，生成自然语言预测报告，附置信度。
+          </p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">置信度分级</p>
+          <table class="rule-table">
+            <thead>
+              <tr><th>置信度</th><th>触发条件</th><th>使用建议</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:var(--accent2)">高</strong></td>
+                <td>历史有 100+ 次类似策略 + 用户分布匹配度高</td>
+                <td>结论可作为决策依据</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--gold)">中</strong></td>
+                <td>历史 20~100 次类似 / 有部分新变量</td>
+                <td>建议小规模灰度验证后推广</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--coral)">低</strong></td>
+                <td>全新类型策略 / 历史数据稀少</td>
+                <td>明确说"数据不足"，建议先做 A/B 测试</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">校准机制</p>
+          <p class="ms-content">
+            策略真实上线后，系统自动记录"预测值 vs 实际值"的差异，存入 prediction_calibration 表。每月生成校准报告——哪类策略预测准确率高、哪类容易偏差、偏差方向是什么。基于校准结果迭代规律库，让推演越来越准。<br><br>
+            <strong>厂商游戏作为状态变量：</strong>不仿真游戏内部数值（RTP、赔率厂商锁定），但将玩家当前游戏场景（在玩什么、最近输赢状态、游戏切换行为）作为推演变量。同一充值活动，玩家刚连输 vs 刚赢了一把，响应率完全不同。
+          </p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">数据表结构</p>
+          <pre style="background:var(--bg3);padding:12px 14px;border-radius:6px;font-size:12px;line-height:1.7;overflow-x:auto;color:var(--text);">
+strategy_simulations（策略仿真表）
+- sim_id, strategy_doc_id, status, started_at, finished_at
+- input_params JSONB, result JSONB, confidence_level
+
+simulation_segment_results（分群结果表）
+- sim_id, segment_id, predicted_response_rate, predicted_revenue_delta
+- 用于查看每个分群的具体预测
+
+prediction_calibration（预测校准表）
+- prediction_id, predicted_value, actual_value, deviation
+- strategy_type, recorded_at
+- 用于持续校准准确率</pre>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">技术实现</p>
+          <p class="ms-content">
+            <strong>策略文档解析：</strong>Claude API 解析策略文档，提取规则、目标用户、奖励结构、时间窗口等结构化字段。<br><br>
+            <strong>规律匹配：</strong>用向量检索（pgvector）从历史规律库找类似案例，结合规则引擎过滤适用条件。<br><br>
+            <strong>推演计算：</strong>Python 服务，遍历各分群虚拟用户，应用规律得出响应概率，汇总成报告。<br><br>
+            <strong>报告生成：</strong>Claude API 把数值结果转换为自然语言报告，包含"建议推进/调整/不推进"的明确结论。
+          </p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">人天估算依据</p>
+          <p class="ms-content">策略文档解析逻辑 2~3 天，规律匹配引擎 3~4 天，推演计算服务 4~5 天，置信度模型 1~2 天，校准机制 + 报告生成 2~3 天，前端展示 + 联调 3 天。合计 15~20 天。自研方案需自建特征工程和评分模型，增加 15 天。</p>
+        </div>
+
+        <div class="debate">
+          <p class="debate-label">待评估</p>
+          <p class="debate-content">第一版仿真误差预计在 15~30%，需要至少 2~3 个版本节点的校准数据才能稳定到 10% 内。冷启动期间应明确告诉运营团队"这是参考、不是承诺"，避免初期失望。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- T2.4 -->
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">T2.4</span>
+        <span class="module-title">AI 推演引擎 — 决策辅助核心</span>
+        <span class="module-version v2-tag">后端 · 10~15 天</span>
+      </div>
+      <div class="module-body">
+
+        <div class="module-section">
+          <p class="ms-label">三种使用模式</p>
+          <table class="rule-table">
+            <thead>
+              <tr><th>模式</th><th>用户输入</th><th>系统输出</th><th>典型场景</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>目标导向</strong></td>
+                <td>"我想提升中 R 用户留存 5%"</td>
+                <td>3~5 个候选策略 + 各自预期效果</td>
+                <td>运营找方向</td>
+              </tr>
+              <tr>
+                <td><strong>方案预判</strong></td>
+                <td>新活动方案文档</td>
+                <td>预期效果 + 风险点 + 建议调整</td>
+                <td>立项前评审</td>
+              </tr>
+              <tr>
+                <td><strong>指标预测</strong></td>
+                <td>"如果我把首充奖励从 50 提到 100"</td>
+                <td>具体指标变化预测 + 置信区间</td>
+                <td>具体决策</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">推演核心流程</p>
+          <div class="flow-diagram">
+            <p class="flow-label">输入解析</p>
+            <div class="flow-row" style="margin-bottom:6px">
+              <div class="flow-box flow-box-gray" style="flex:1;text-align:center">
+                <div>用户问题/方案文档 → 结构化意图</div>
+              </div>
+            </div>
+            <p class="flow-label" style="margin-top:12px">上下文检索</p>
+            <div class="flow-row" style="margin-bottom:6px">
+              <div class="flow-box flow-box-purple" style="text-align:center">
+                <div>认知底座</div><div class="flow-sub">公司认知 + 价值观</div>
+              </div>
+              <div class="flow-arrow">+</div>
+              <div class="flow-box flow-box-purple" style="text-align:center">
+                <div>规律库</div><div class="flow-sub">历史成败案例</div>
+              </div>
+              <div class="flow-arrow">+</div>
+              <div class="flow-box flow-box-purple" style="text-align:center">
+                <div>当前数据</div><div class="flow-sub">六模块指标</div>
+              </div>
+            </div>
+            <p class="flow-label" style="margin-top:12px">推演生成</p>
+            <div class="flow-row" style="margin-bottom:6px">
+              <div class="flow-box flow-box-teal" style="flex:1;text-align:center">
+                <div>Claude API → 调用策略预判引擎 → 综合分析</div>
+              </div>
+            </div>
+            <p class="flow-label" style="margin-top:12px">输出</p>
+            <div class="flow-row">
+              <div class="flow-box flow-box-teal" style="flex:1;text-align:center">
+                <div>结构化建议 + 数据依据 + 置信度 + 风险提示</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">关键设计原则</p>
+          <p class="ms-content">
+            <strong>① 永远附数据依据。</strong>每个建议都列出"基于什么历史案例""数据支撑是什么"，让使用者能验证而不是盲信。<br><br>
+            <strong>② 永远标置信度。</strong>从"高/中/低"明确告知判断的可靠性。低置信度场景明说"数据不足，建议小范围验证"。<br><br>
+            <strong>③ 永远提风险。</strong>不只说方案好处，主动列出潜在风险点和需要监控的指标。<br><br>
+            <strong>④ 价值观过滤。</strong>调用思想层（来自版本一）做最终审核——确保建议符合公司责任博彩边界等价值观要求，违反则不输出该建议。
+          </p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">数据表结构</p>
+          <pre style="background:var(--bg3);padding:12px 14px;border-radius:6px;font-size:12px;line-height:1.7;overflow-x:auto;color:var(--text);">
+inference_sessions(推演会话表)
+- session_id, user_id, mode, input JSONB, status
+
+inference_results（推演结果表）
+- result_id, session_id, recommendation TEXT, evidence JSONB
+- confidence_level, risks JSONB, generated_at
+
+inference_feedback（反馈表）
+- feedback_id, result_id, was_adopted, actual_outcome
+- 用于校准 AI 推演的准确率</pre>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">人天估算依据</p>
+          <p class="ms-content">三种模式的 Prompt 设计 + 调试 3~4 天（这部分是核心工作量），上下文检索逻辑 2~3 天，与策略预判引擎对接 2~3 天，价值观过滤层 1~2 天，反馈记录 + 校准接口 1~2 天，测试调优 1 天。合计 10~15 天。</p>
+        </div>
+
+        <div class="debate">
+          <p class="debate-label">待评估</p>
+          <p class="debate-content">Claude API 调用成本是版本二的主要工具成本。每次推演调用 1~3 次 API（取决于复杂度），单次成本约 ¥0.3~1.5。建议立项后先做用量测算，避免上线后才发现成本超预期。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- T2.5 -->
+    <div class="module">
+      <div class="module-header">
+        <span class="module-num">T2.5</span>
+        <span class="module-title">运营使用界面 — 文档输入与报告展示</span>
+        <span class="module-version v2-tag">前端 · 10~15 天</span>
+      </div>
+      <div class="module-body">
+
+        <div class="module-section">
+          <p class="ms-label">界面结构</p>
+          <div class="flow-diagram">
+            <div class="flow-row" style="margin-bottom:6px">
+              <div class="flow-box flow-box-gray" style="flex:1;text-align:center">
+                <strong>主导航</strong>
+              </div>
+            </div>
+            <div class="flow-row" style="margin-bottom:6px">
+              <div class="flow-box flow-box-purple" style="text-align:center">
+                <div>指标看板</div><div class="flow-sub">六模块监控</div>
+              </div>
+              <div class="flow-arrow">|</div>
+              <div class="flow-box flow-box-teal" style="text-align:center">
+                <div>策略推演</div><div class="flow-sub">三种模式入口</div>
+              </div>
+              <div class="flow-arrow">|</div>
+              <div class="flow-box flow-box-amber" style="text-align:center">
+                <div>历史报告</div><div class="flow-sub">推演结果归档</div>
+              </div>
+              <div class="flow-arrow">|</div>
+              <div class="flow-box flow-box-gray" style="text-align:center">
+                <div>预警中心</div><div class="flow-sub">异常推送</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">指标看板页</p>
+          <p class="ms-content">六模块指标卡片式展示，支持时间范围切换、分群下钻、对比模式（与上周/上月/同期对比）。卡片右上角显示当前预警状态。点击卡片进入明细页，展示趋势图 + AI 自动归因。</p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">策略推演页</p>
+          <p class="ms-content">三种模式各自有专属入口和表单：
+            <br><br>
+            <strong>目标导向：</strong>填写目标（"提升中 R 留存 5%"）+ 时间范围 → 系统给候选策略列表，每个附预期效果。<br>
+            <strong>方案预判：</strong>上传或粘贴方案文档 → 系统输出预期效果 + 风险 + 建议调整，分群拆解。<br>
+            <strong>指标预测：</strong>选择要变更的参数（如奖励金额）+ 变化幅度 → 系统输出受影响指标的预测值。
+            <br><br>
+            所有推演结果支持导出为 PDF 报告，便于内部分享。
+          </p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">历史报告页</p>
+          <p class="ms-content">所有推演结果按时间归档，支持搜索、筛选、对比。每条报告显示"是否被采纳"和"实际结果 vs 预测"——这是 AI 准确率的可视化记录，让团队能直观看到系统在变得更准。</p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">技术选型</p>
+          <p class="ms-content">
+            <strong>建议方案：</strong>React + Tailwind CSS + Recharts（图表库）+ shadcn/ui（组件库）。前端独立部署，通过 REST API 与后端通信。<br><br>
+            <strong>不推荐 Retool 的原因：</strong>版本二的界面交互比版本一复杂得多——文档上传、分群下钻、对比图表等。Retool 在这个复杂度下灵活性不足，自建反而更划算。<br><br>
+            <strong>响应式：</strong>主要适配桌面端，移动端简化版只展示指标看板和预警，不支持推演操作。
+          </p>
+        </div>
+
+        <div class="module-section">
+          <p class="ms-label">人天估算依据</p>
+          <p class="ms-content">指标看板页 3~4 天，策略推演页（三种模式）4~5 天，历史报告页 2~3 天，预警中心 1~2 天，整体路由 + 状态管理 + 联调 1~2 天。合计 10~15 天。</p>
+        </div>
+
+        <div class="debate">
+          <p class="debate-label">待评估</p>
+          <p class="debate-content">界面的使用人数和频率会影响后端 QPS 设计。建议先评估有多少运营人员会用、日均使用频次，确定服务器规格。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <p><strong>版本二整体架构小结：</strong>数数科技 + 后端日志 → 指标计算层（六模块）→ 监控应用层（看板 + 预警 + 归因）。同时用户画像三层叠加 → 虚拟用户群 → 策略预判引擎，对接 AI 推演引擎完成"决策辅助"闭环。运营通过专属界面输入策略，看到预测报告。版本二在版本一认知底座的基础上，把"凭经验"升级为"基于数据 + 模拟"。</p>
+
+  </div>
+
+  <!-- V3 Placeholder -->
+  <div class="section" id="v3">
+    <div class="section-header">
+      <span class="section-num">V3</span>
+    </div>
+    <h2 class="section-title">版本三 · 行业视野与竞品洞察</h2>
+    <p class="prose">该部分技术细节待补充。计划展开内容：竞品数据采集管道（公开信息抓取与清洗）、版本考古分析模型（时间序列推断决策逻辑）、跨行业案例库（结构化入库与语义检索）、洞察报告界面（竞品动态、对标分析、差异化机会展示）。</p>
+  </div>
+
+  <!-- V4 Placeholder -->
+  <div class="section" id="v4">
+    <div class="section-header">
+      <span class="section-num">V4</span>
+    </div>
+    <h2 class="section-title">版本四 · 群体智慧积累与赋能</h2>
+    <p class="prose">该部分技术细节待补充。计划展开内容：职业智慧知识库（正向经验提取逻辑、适用条件推断、知识库分类体系）、专家权重体系（超级账号管理、专家资格动态调整、防投毒机制）、文档/代码审查能力（员工提交内容的群体审查流程、疏忽识别与提醒）、员工使用界面（审查提交、结果查看、个人成长提醒）。</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span><a href="index.html" style="color:var(--text3);text-decoration:none;">← 返回主立项方案</a></span>
+    <span>技术方案细节文档</span>
+  </div>
+
+</div>
+
+<script>
+function jumpTo(id) {
+  var el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+</script>
+</body>
+</html>
